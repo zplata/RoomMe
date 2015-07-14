@@ -1,17 +1,55 @@
 package com.example.trocket.roomme;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends ActionBarActivity implements View.OnClickListener {
+
+    private ArrayList<User> userList = new ArrayList<User>();
+    private UserArrayAdapter adapter;
+
+    public ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        for(int i = 0; i < 10; i++) {
+            userList.add(i, new User());
+        }
+
+        list = (ListView) findViewById(R.id.ah_users_list);
+        adapter = new UserArrayAdapter(this, userList);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), ProfileViewActivity.class);
+                startActivity(i);
+                setContentView(R.layout.activity_profile_view);
+            }
+        });
+    }
+
+    public void onClick(View v) {
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "CLICKED", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

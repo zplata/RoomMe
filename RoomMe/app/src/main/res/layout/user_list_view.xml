@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/ulv_user_pic"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="80dp"
+            android:id="@+id/ulv_user_name"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ulv_user_pic"
+            android:layout_toEndOf="@+id/ulv_user_pic" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/ulv_match_score"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ulv_user_name"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>
