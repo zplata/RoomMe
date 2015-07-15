@@ -8,12 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class HomeActivity extends ActionBarActivity implements View.OnClickListener {
+public class HomeActivity extends ActionBarActivity {
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
@@ -25,6 +24,7 @@ public class HomeActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Dummy data
         for(int i = 0; i < 10; i++) {
             userList.add(i, new User());
         }
@@ -39,15 +39,6 @@ public class HomeActivity extends ActionBarActivity implements View.OnClickListe
                 Intent i = new Intent(getApplicationContext(), ProfileViewActivity.class);
                 startActivity(i);
                 setContentView(R.layout.activity_profile_view);
-            }
-        });
-    }
-
-    public void onClick(View v) {
-        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "CLICKED", Toast.LENGTH_LONG).show();
             }
         });
     }
