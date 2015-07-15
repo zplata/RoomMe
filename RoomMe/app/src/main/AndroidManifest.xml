@@ -24,6 +24,10 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name=".EditProfileView"
+            android:label="@string/title_activity_edit_profile_view" >
+        </activity>
     </application>
 
 </manifest>
