@@ -1,44 +1,28 @@
 package com.example.trocket.roomme;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import java.util.ArrayList;
+import android.widget.Button;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
-    private ArrayList<User> userList = new ArrayList<User>();
-    private UserArrayAdapter adapter;
-
-    public ListView list;
+    private Button fbButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_login);
 
-        // Dummy data
-        for(int i = 0; i < 10; i++) {
-            userList.add(i, new User());
-        }
+        fbButton = (Button) findViewById(R.id.al_fbLogin);
 
-        list = (ListView) findViewById(R.id.ah_users_list);
-        adapter = new UserArrayAdapter(this, userList);
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        fbButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), ProfileViewActivity.class);
-                startActivity(i);
-                setContentView(R.layout.activity_profile_view);
+            public void onClick(View v) {
+                // TODO: FB Login Crap
             }
         });
     }
@@ -46,7 +30,7 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
 
