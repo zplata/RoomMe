@@ -3,6 +3,7 @@ package com.example.trocket.roomme;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -66,27 +67,6 @@ public class HomeActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        /*nav_drawer_layout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        nav_list.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, nav_actions));
-        nav_list.setOnItemClickListener(new DrawerItemClickListener());
-
-        nav_drawer_toggle = new ActionBarDrawerToggle(this, nav_drawer_layout, R.string.drawer_open, R.string.drawer_close) {
-            public void onDrawerClosed(View view) {
-               // getSupportActionBar().setTitle(nav_title);
-                invalidateOptionsMenu();
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                //getSupportActionBar().setTitle(nav_title);
-                invalidateOptionsMenu();
-            }
-        };
-        nav_drawer_layout.setDrawerListener(nav_drawer_toggle);
-
-        if(savedInstanceState == null) {
-            selectItem(0);
-        }*/
-
     }
 
     private void addDrawerItems() {
@@ -108,7 +88,7 @@ public class HomeActivity extends ActionBarActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                getSupportActionBar().setTitle("Take Action!");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
@@ -122,6 +102,7 @@ public class HomeActivity extends ActionBarActivity {
 
         nav_drawer_toggle.setDrawerIndicatorEnabled(true);
         nav_drawer_layout.setDrawerListener(nav_drawer_toggle);
+        nav_drawer_layout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
     }
 
     /*private class DrawerItemClickListener implements ListView.OnItemClickListener {
