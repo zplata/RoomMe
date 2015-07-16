@@ -14,7 +14,7 @@ namespace RoomMe.Webservice.Models
         public string Name { get; set; }
         public virtual List<User> Users { get; set; }
 
-        public APITag ToModelAPI()
+        public APITag ToAPIModel()
         {
             return new APITag
             {
