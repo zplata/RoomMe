@@ -30,6 +30,7 @@ public class HomeActivity extends ActionBarActivity {
     private ListView nav_list;
     private ActionBarDrawerToggle nav_drawer_toggle;
     private ArrayAdapter<String> nav_adapter;
+
     private String nav_title;
 
 
@@ -70,7 +71,7 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Edit Profile", "RoomMe List", "Poop", "Settings", "Cocoa" };
+        String[] osArray = {"My Profile", "Edit Profile", "RoomMe List"};
         nav_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         nav_list.setAdapter(nav_adapter);
 
@@ -105,33 +106,6 @@ public class HomeActivity extends ActionBarActivity {
         nav_drawer_layout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
     }
 
-    /*private class DrawerItemClickListener implements ListView.OnItemClickListener {
-
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
-
-    private void selectItem(int position) {
-        Fragment fragment = new ActionFragment();
-        Bundle args = new Bundle();
-        args.putInt(ActionFragment.ARG_ACTION_NUMBER, position);
-        fragment.setArguments(args);
-
-        FragmentManager fragMan = getFragmentManager();
-        fragMan.beginTransaction().replace(R.id.ah_content_frame, fragment).commit();
-
-        nav_list.setItemChecked(position, true);
-        //setTitle(nav_actions[position]);
-        nav_drawer_layout.closeDrawer(nav_list);
-    }*/
-
-    /**@Override
-    public void setTitle(CharSequence title) {
-        nav_title = title;
-        getSupportActionBar().setTitle(nav_title);
-    }*/
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -144,23 +118,6 @@ public class HomeActivity extends ActionBarActivity {
         super.onConfigurationChanged(newConfig);
         nav_drawer_toggle.onConfigurationChanged(newConfig);
     }
-
-    /*public static class ActionFragment extends Fragment {
-        public static final String ARG_ACTION_NUMBER = "action_number";
-
-        public ActionFragment() {}
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.drawer_fragment_edit, container, false);
-            int i = getArguments().getInt(ARG_ACTION_NUMBER);
-            String action = getResources().getStringArray(R.array.actions_array)[i];
-
-            ((ImageView) rootView.findViewById(R.id.dfe_pic)).setImageResource(R.drawable.isu);
-            getActivity().setTitle(action);
-            return rootView;
-        }
-    }*/
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
