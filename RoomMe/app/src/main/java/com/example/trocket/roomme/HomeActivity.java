@@ -2,7 +2,7 @@ package com.example.trocket.roomme;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -16,15 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 
 public class HomeActivity extends AppCompatActivity {
-
-    private ArrayList<User> userList = new ArrayList<User>();
-    private UserArrayAdapter adapter;
-
-    private ListView list;
 
     // Nav Drawer Views
     private DrawerLayout nav_drawer_layout;
@@ -36,34 +29,23 @@ public class HomeActivity extends AppCompatActivity {
     private String[] nav_actions;
     private TestObject[] testObjs;
 
-
+    private FragmentManager fragMan;
+    private FragmentTransaction tx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Dummy data
-        for(int i = 0; i < 10; i++) {
-            userList.add(i, new User());
-        }
-        testObjs = new TestObject[3];
-        testObjs[0] = new TestObject(R.drawable.ic_launcher, "My Profile");
-        testObjs[1] = new TestObject(R.drawable.ic_launcher, "Edit Profile");
-        testObjs[2] = new TestObject(R.drawable.ic_launcher, "RoomMe List");
+        getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
 
-        list = (ListView) findViewById(R.id.ah_users_list);
-        adapter = new UserArrayAdapter(this, userList);
-        list.setAdapter(adapter);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), ProfileViewActivity.class);
-                startActivity(i);
-                setContentView(R.layout.activity_profile_view);
-            }
-        });
+
+        testObjs = new TestObject[4];
+        testObjs[0] = new TestObject(R.drawable.ic_launcher, "Home");
+        testObjs[1] = new TestObject(R.drawable.ic_launcher, "My Profile");
+        testObjs[2] = new TestObject(R.drawable.ic_launcher, "Edit Profile");
+        testObjs[3] = new TestObject(R.drawable.ic_launcher, "RoomMe List");
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
         nav_list = (ListView) findViewById(R.id.ah_nav_list);
@@ -99,20 +81,24 @@ public class HomeActivity extends AppCompatActivity {
 
         switch (position) {
             case 0:
-                fragment = new MyProfileFragment();
+                fragment = new HomeFragment();
                 break;
             case 1:
-                fragment = new ProfileEditFragment();
+                fragment = new ProfileFragment();
                 break;
             case 2:
+                fragment = new ProfileEditFragment();
+                break;
+            case 3:
                 fragment = new RoomMeListFragment();
                 break;
             default:
                 break;
         }
         if (fragment != null) {
-            FragmentManager fragMan = getFragmentManager();
-            fragMan.beginTransaction().replace(R.id.ah_content_frame, new MyProfileFragment()).commit();
+            fragMan = getFragmentManager();
+            tx = fragMan.beginTransaction();
+            tx.replace(R.id.ah_content_frame, fragment).addToBackStack("tag").commit();
             Toast.makeText(getApplicationContext(), "THIS MOOOOOOOO", Toast.LENGTH_LONG).show();
 
             nav_list.setItemChecked(position, true);
@@ -208,4 +194,5 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
