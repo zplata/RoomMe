@@ -15,6 +15,7 @@ namespace RoomMe.Webservice.Migrations
 
         protected override void Seed(RoomMe.Webservice.Models.RoomMeWebserviceContext context)
         {
+            /*
             context.Careers.AddOrUpdate(x => x.CareerID,
                 new Career() { CareerID = 1, Company = "Test Company 1", JobTitle = "Test Title 1", Users = null },
                 new Career() { CareerID = 2, Company = "Test Company 2", JobTitle = "Test Title 2", Users = null },
@@ -22,9 +23,9 @@ namespace RoomMe.Webservice.Migrations
                 );
 
             context.Locations.AddOrUpdate(x => x.LocationID,
-                new Location() { LocationID = 1, Latitude = 1, Longitude = 1, Residents = null },
-                new Location() { LocationID = 2, Latitude = 2, Longitude = 2, Residents = null },
-                new Location() { LocationID = 3, Latitude = 3, Longitude = 3, Residents = null }
+                new Location() { LocationID = 1, Latitude = 1, Longitude = 1},
+                new Location() { LocationID = 2, Latitude = 2, Longitude = 2},
+                new Location() { LocationID = 3, Latitude = 3, Longitude = 3}
                 );
 
             context.Tags.AddOrUpdate(x => x.TagID,
@@ -34,9 +35,9 @@ namespace RoomMe.Webservice.Migrations
                 );
 
             context.Preferences.AddOrUpdate(x => x.PreferencesID,
-                new Preferences() { PreferencesID = 1, Age = 1, Gender = Gender.Male, Location = null, LowerPriceLimit = 0, UpperPriceLimit = 1, Tags = null},
-                new Preferences() { PreferencesID = 2, Age = 2, Gender = Gender.Female, Location = null, LowerPriceLimit = 2, UpperPriceLimit = 3, Tags = null},
-                new Preferences() { PreferencesID = 3, Age = 3, Gender = Gender.Male, Location = null, LowerPriceLimit = 2, UpperPriceLimit = 4, Tags = null}
+                new Preferences() { PreferencesID = 1, Age = 1, Gender = Gender.Male, Locations = null, LowerPriceLimit = 0, UpperPriceLimit = 1, Tags = null},
+                new Preferences() { PreferencesID = 2, Age = 2, Gender = Gender.Female, Locations = null, LowerPriceLimit = 2, UpperPriceLimit = 3, Tags = null},
+                new Preferences() { PreferencesID = 3, Age = 3, Gender = Gender.Male, Locations = null, LowerPriceLimit = 2, UpperPriceLimit = 4, Tags = null}
                 );
 
             context.Users.AddOrUpdate(x => x.UserID,
@@ -51,11 +52,10 @@ namespace RoomMe.Webservice.Migrations
                     Email = "testEmail1@test.com", 
                     Status = Status.HasVacancy, 
                     Favorites = null, 
-                    IsActive = true, 
                     Job = null, 
                     PreferencesID = 1,
                     Tags = null, 
-                    HousingLocation = null 
+                    Housing = null 
                 },
 
                 new User() 
@@ -69,11 +69,10 @@ namespace RoomMe.Webservice.Migrations
                     Email = "testEmail2@test.com", 
                     Status = Status.NeedsHousingAndRoommate, 
                     Favorites = null, 
-                    IsActive = true, 
                     Job = null, 
                     PreferencesID = 2,
-                    Tags = null, 
-                    HousingLocation = null 
+                    Tags = null,
+                    Housing = null 
                 },
 
                 new User() 
@@ -87,14 +86,14 @@ namespace RoomMe.Webservice.Migrations
                     Email = "testEmail3@test.com", 
                     Status = Status.NeedsRoommateOnly, 
                     Favorites = null, 
-                    IsActive = true, 
                     Job = null, 
                     PreferencesID = 3,
-                    Tags = null, 
-                    HousingLocation = null 
+                    Tags = null,
+                    Housing = null 
                 }
 
                 );
+             * */
         }
     }
 }

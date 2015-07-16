@@ -15,6 +15,7 @@ namespace RoomMe.Webservice.Models
         public double? UpperPriceLimit { get; set; }
         public double? LowerPriceLimit { get; set; }
         public virtual List<Tag> Tags { get; set; }
-        public virtual Location Location { get; set; }
+        public virtual List<Location> Locations { get; set; }
+        public virtual List<Housing> Housings { get; set; }
     }
 }

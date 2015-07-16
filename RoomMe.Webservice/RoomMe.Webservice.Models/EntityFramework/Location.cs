@@ -12,6 +12,6 @@ namespace RoomMe.Webservice.Models
         public int LocationID { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
-        public virtual List<User> Residents { get; set; }
+
     }
 }

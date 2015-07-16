@@ -9,6 +9,7 @@ namespace RoomMe.Webservice.Models
     {
         HasVacancy = 0,
         NeedsHousingAndRoommate,
-        NeedsRoommateOnly
+        NeedsRoommateOnly,
+        Inactive
     }
 }
