@@ -1,6 +1,7 @@
 package com.example.trocket.roomme;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,10 +13,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse{
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
+    JsonAccessor jsonGetter = new JsonAccessor();
 
     public ListView list;
 
@@ -23,7 +25,9 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        jsonGetter.delegate = this;
 
+        //int test = yayJson.derp();
         // Dummy data
         for(int i = 0; i < 10; i++) {
             userList.add(i, new User());
@@ -41,6 +45,10 @@ public class HomeActivity extends ActionBarActivity {
                 setContentView(R.layout.activity_profile_view);
             }
         });
+
+        //Execute the JsonAccessor with an Api address
+        jsonGetter.execute("http://date.jsontest.com/");
+
     }
 
     @Override
@@ -55,6 +63,7 @@ public class HomeActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -64,4 +73,13 @@ public class HomeActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //onJsonProcessFinish is automatically called when the JsonAccessor finishes
+    //object should be a string that contains the JSON data from the given URL
+    public void onJsonProcessFinish(String object)
+    {
+        System.out.println(object);
+    }
 }
+
+
