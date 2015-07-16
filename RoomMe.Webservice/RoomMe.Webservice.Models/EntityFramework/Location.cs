@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomMe.Webservice.Models.API;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,5 +14,14 @@ namespace RoomMe.Webservice.Models
         public float Latitude { get; set; }
         public float Longitude { get; set; }
 
+        public APILocation ToAPIModel()
+        {
+            return new APILocation
+            {
+                LocationID = this.LocationID,
+                Latitude = this.Latitude,
+                Longitude = this.Longitude
+            };
+        }
     }
 }

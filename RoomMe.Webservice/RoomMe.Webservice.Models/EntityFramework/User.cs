@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomMe.Webservice.Models.API;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,5 +27,20 @@ namespace RoomMe.Webservice.Models
         public double HousingPrice { get; set; }
 
         // todo: matches and suggestions. Suggestions shouldn't be stored with the user because it stores state and could be stale.
+
+        public APIUser ToAPIModel()
+        {
+            return new APIUser
+            {
+                UserID = this.UserID,
+                Age = this.Age,
+                Email = this.Email,
+                Gender = this.Gender,
+                HousingPrice = this.HousingPrice,
+                Name = this.Name,
+                PhoneNumber = this.PhoneNumber,
+                Status = this.Status,
+            };
+        }
     }
 }

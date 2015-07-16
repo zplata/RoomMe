@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomMe.Webservice.Models.API;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,5 +18,14 @@ namespace RoomMe.Webservice.Models
         public virtual Location Location { get; set; }
         public string Address { get; set; }
 
+        public APIHousing ToAPIModel()
+        {
+            return new APIHousing
+            {
+                HousingID = this.HousingID,
+                Name = this.Name,
+                Address = this.Address
+            };
+        }
     }
 }
