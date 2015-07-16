@@ -10,11 +10,11 @@
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string-array name="actions_array">
-        <item>EditProfile</item>
-        <item>ChangeCompany</item>
-        <item>GiveBirth</item>
-        <item>BeAwesome</item>
-        <item>LoveMe</item>
-        <item>Poop</item>
+        <item>My Profile</item>
+        <item>Edit Profile</item>
+        <item>RoomMe List</item>
     </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

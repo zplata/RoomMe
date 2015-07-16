@@ -1,24 +1,25 @@
 package com.example.trocket.roomme;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
@@ -29,9 +30,11 @@ public class HomeActivity extends ActionBarActivity {
     private DrawerLayout nav_drawer_layout;
     private ListView nav_list;
     private ActionBarDrawerToggle nav_drawer_toggle;
-    private ArrayAdapter<String> nav_adapter;
+    private DrawerItemAdapter nav_adapter;
 
-    private String nav_title;
+    private CharSequence nav_title;
+    private String[] nav_actions;
+    private TestObject[] testObjs;
 
 
 
@@ -44,6 +47,10 @@ public class HomeActivity extends ActionBarActivity {
         for(int i = 0; i < 10; i++) {
             userList.add(i, new User());
         }
+        testObjs = new TestObject[3];
+        testObjs[0] = new TestObject(R.drawable.ic_launcher, "My Profile");
+        testObjs[1] = new TestObject(R.drawable.ic_launcher, "Edit Profile");
+        testObjs[2] = new TestObject(R.drawable.ic_launcher, "RoomMe List");
 
         list = (ListView) findViewById(R.id.ah_users_list);
         adapter = new UserArrayAdapter(this, userList);
@@ -60,9 +67,13 @@ public class HomeActivity extends ActionBarActivity {
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
         nav_list = (ListView) findViewById(R.id.ah_nav_list);
-        nav_title = getTitle().toString();
+        nav_title = getTitle();
+        nav_actions = getResources().getStringArray(R.array.actions_array);
 
         addDrawerItems();
+
+        nav_list.setOnItemClickListener(new DrawerItemClickListener());
+
         setupDrawer();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,17 +81,64 @@ public class HomeActivity extends ActionBarActivity {
 
     }
 
-    private void addDrawerItems() {
-        String[] osArray = {"My Profile", "Edit Profile", "RoomMe List"};
-        nav_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-        nav_list.setAdapter(nav_adapter);
+    private class DrawerItemClickListener implements ListView.OnItemClickListener{
 
-        nav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(HomeActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    private void addDrawerItems() {
+        nav_adapter = new DrawerItemAdapter(this, R.layout.drawer_list_item, testObjs);
+        nav_list.setAdapter(nav_adapter);
+    }
+
+    private void selectItem(int position) {
+        Fragment fragment = null;
+
+        switch (position) {
+            case 0:
+                fragment = new MyProfileFragment();
+                break;
+            case 1:
+                fragment = new ProfileEditFragment();
+                break;
+            case 2:
+                fragment = new RoomMeListFragment();
+                break;
+            default:
+                break;
+        }
+        if (fragment != null) {
+            FragmentManager fragMan = getFragmentManager();
+            fragMan.beginTransaction().replace(R.id.ah_content_frame, new MyProfileFragment()).commit();
+            Toast.makeText(getApplicationContext(), "THIS MOOOOOOOO", Toast.LENGTH_LONG).show();
+
+            nav_list.setItemChecked(position, true);
+            nav_list.setSelection(position);
+            setTitle(nav_actions[position]);
+            nav_drawer_layout.closeDrawer(nav_list);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "THIS DIDNT WORK", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        nav_title = title;
+        getSupportActionBar().setTitle(nav_title);
+    }
+
+    public class TestObject {
+        public int icon;
+        public String action;
+
+        public TestObject(int icon, String action) {
+            this.icon = icon;
+            this.action = action;
+        }
     }
 
     private void setupDrawer() {
