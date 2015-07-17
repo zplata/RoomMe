@@ -45,6 +45,7 @@ public class JsonAccessor extends AsyncTask<String, Void, String>{
             } else
             {
                 System.out.println("Failed to Access Json!");
+                return null;
             }
         } catch (ClientProtocolException e )
         {
@@ -63,6 +64,7 @@ public class JsonAccessor extends AsyncTask<String, Void, String>{
     protected String doInBackground(String...urls)
     {
         try{
+            //urls[0] is the first argument given, in this case it is the URL to be accessed
             String derp = getJSON(urls[0]);
             //System.out.println(derp);
             return derp;

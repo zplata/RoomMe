@@ -64,7 +64,8 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
 
 
         //Execute the JsonAccessor with an Api address
-        jsonGetter.execute("http://date.jsontest.com/");
+        //This is an example
+        //jsonGetter.execute("http://date.jsontest.com/");
 
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
@@ -162,9 +163,10 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
 
     //onJsonProcessFinish is automatically called when the JsonAccessor finishes
     //object should be a string that contains the JSON data from the given URL
-    public void onJsonProcessFinish(String object)
+    public String onJsonProcessFinish(String object)
     {
         System.out.println(object);
+        return object;
     }
 }
 

@@ -5,5 +5,5 @@ package com.example.trocket.roomme;
  * AsyncJSONResponse is an interface used to handle a returned JSON string from the JsonAccessor
  */
 public interface AsyncJSONResponse {
-    void onJsonProcessFinish(String output);
+    String onJsonProcessFinish(String output);
 }
