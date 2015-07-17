@@ -11,12 +11,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AsyncJSONResponse {
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
 
     private ListView list;
+    private JsonAccessor jsonGetter;
 
 
     public HomeFragment() {
@@ -28,8 +29,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        jsonGetter = new JsonAccessor();
+        jsonGetter.delegate = this;
+        jsonGetter.execute("http://roomme.azurewebsites.net/Api/user");
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
 
         for(int i = 0; i < 10; i++) {
             userList.add(i, new User("Replace This w/ a Users name", 21));
@@ -51,4 +54,8 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public String onJsonProcessFinish(String output) {
+        return null;
+    }
 }
