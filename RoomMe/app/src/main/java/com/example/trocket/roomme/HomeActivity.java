@@ -1,6 +1,7 @@
 package com.example.trocket.roomme;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -18,10 +19,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse{
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
+    JsonAccessor jsonGetter = new JsonAccessor();
 
     private ListView list;
 
@@ -39,7 +41,9 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        jsonGetter.delegate = this;
 
+        //int test = yayJson.derp();
         // Dummy data
         for(int i = 0; i < 10; i++) {
             userList.add(i, new User());
@@ -57,6 +61,12 @@ public class HomeActivity extends ActionBarActivity {
                 setContentView(R.layout.activity_profile_view);
             }
         });
+
+
+        //Execute the JsonAccessor with an Api address
+        //This is an example
+        //jsonGetter.execute("http://date.jsontest.com/");
+
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
         nav_list = (ListView) findViewById(R.id.ah_nav_list);
@@ -150,4 +160,14 @@ public class HomeActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //onJsonProcessFinish is automatically called when the JsonAccessor finishes
+    //object should be a string that contains the JSON data from the given URL
+    public String onJsonProcessFinish(String object)
+    {
+        System.out.println(object);
+        return object;
+    }
 }
+
+
