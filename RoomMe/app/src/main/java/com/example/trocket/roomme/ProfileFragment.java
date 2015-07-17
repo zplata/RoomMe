@@ -34,10 +34,9 @@ public class ProfileFragment extends Fragment {
 
         //
         name = (TextView) rootView.findViewById(R.id.fp_name);
-        name.setText(exampleUser.getName());
+        name.setText("Where Name Goes");
         age = (TextView) rootView.findViewById(R.id.fp_age);
-        age.setText("Age: " + exampleUser.getAge());
-        name.setText("Zach Test");
+        age.setText("Age: " + "Where our info goes when we get User object in Intent form");
         addToList = (Button) rootView.findViewById(R.id.fp_addToList);
         fbMSG = (Button) rootView.findViewById(R.id.fp_fbMSG);
 

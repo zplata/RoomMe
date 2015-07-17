@@ -48,6 +48,8 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
         setContentView(R.layout.activity_home);
         jsonGetter.delegate = this;
 
+        getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
+
         //int test = yayJson.derp();
         // Dummy data
         for(int i = 0; i < 10; i++) {
