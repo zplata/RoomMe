@@ -36,7 +36,7 @@ public class UserArrayAdapter extends ArrayAdapter<User> {
         TextView user_name_view = (TextView) convertView.findViewById(R.id.ulv_user_name);
         ImageView user_pic_view = (ImageView) convertView.findViewById(R.id.ulv_user_pic);
 
-        user_name_view.setText(user.getFirstName());
+        user_name_view.setText(user.getName());
         match_score_view.setText(user.getMatchScore() + "");
 
         return convertView;

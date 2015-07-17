@@ -5,15 +5,30 @@ package com.example.trocket.roomme;
  */
 public class User {
 
-    public User() {
+    private String fullName;
+    private int age;
+    private String phoneNumber;
+    private String email;
+    private double HousingPrice;
 
+
+    /**
+     * Sample user for now. Will make larger eventually.
+     * @param name
+     * @param age
+     */
+    public User(String name, int age) {
+        fullName = name;
+        this.age = age;
     }
 
-    public String getFirstName() {
-        return "example";
-    }
+    public String getName() { return fullName; }
+    public int getAge() { return age; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getEmail() { return email; }
+    public void setPhoneNumber(String num) { phoneNumber = num;}
+    public void setEmail(String email) { this.email = email; }
 
-    public double getMatchScore() {
-        return 6.9;
-    }
+    // Placeholder
+    public double getMatchScore() { return 6.9; }
 }

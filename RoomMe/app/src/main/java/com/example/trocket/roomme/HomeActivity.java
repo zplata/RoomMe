@@ -1,25 +1,27 @@
 package com.example.trocket.roomme;
 
-import android.content.Intent;
-import android.os.AsyncTask;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse{
+
+
+public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse{
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
@@ -31,11 +33,14 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
     private DrawerLayout nav_drawer_layout;
     private ListView nav_list;
     private ActionBarDrawerToggle nav_drawer_toggle;
-    private ArrayAdapter<String> nav_adapter;
+    private DrawerItemAdapter nav_adapter;
 
-    private String nav_title;
+    private CharSequence nav_title;
+    private String[] nav_actions;
+    private TestObject[] testObjs;
 
-
+    private FragmentManager fragMan;
+    private FragmentTransaction tx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +48,19 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
         setContentView(R.layout.activity_home);
         jsonGetter.delegate = this;
 
+        getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
+
         //int test = yayJson.derp();
         // Dummy data
         for(int i = 0; i < 10; i++) {
-            userList.add(i, new User());
+            userList.add(i, new User("Replace this", 21));
         }
 
-        list = (ListView) findViewById(R.id.ah_users_list);
-        adapter = new UserArrayAdapter(this, userList);
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), ProfileViewActivity.class);
-                startActivity(i);
-                setContentView(R.layout.activity_profile_view);
-            }
-        });
+        testObjs = new TestObject[4];
+        testObjs[0] = new TestObject(R.drawable.action_search, "Home");
+        testObjs[1] = new TestObject(R.drawable.action_search, "My Profile");
+        testObjs[2] = new TestObject(R.drawable.action_search, "Edit Profile");
+        testObjs[3] = new TestObject(R.drawable.action_search, "RoomMe List");
 
 
         //Execute the JsonAccessor with an Api address
@@ -70,9 +70,13 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
         nav_list = (ListView) findViewById(R.id.ah_nav_list);
-        nav_title = getTitle().toString();
+        nav_title = getTitle();
+        nav_actions = getResources().getStringArray(R.array.actions_array);
 
         addDrawerItems();
+
+        nav_list.setOnItemClickListener(new DrawerItemClickListener());
+
         setupDrawer();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,17 +84,68 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
 
     }
 
-    private void addDrawerItems() {
-        String[] osArray = {"My Profile", "Edit Profile", "RoomMe List"};
-        nav_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-        nav_list.setAdapter(nav_adapter);
+    private class DrawerItemClickListener implements ListView.OnItemClickListener{
 
-        nav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(HomeActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    private void addDrawerItems() {
+        nav_adapter = new DrawerItemAdapter(this, R.layout.drawer_list_item, testObjs);
+        nav_list.setAdapter(nav_adapter);
+    }
+
+    private void selectItem(int position) {
+        Fragment fragment = null;
+
+        switch (position) {
+            case 0:
+                fragment = new HomeFragment();
+                break;
+            case 1:
+                fragment = new ProfileFragment();
+                break;
+            case 2:
+                fragment = new ProfileEditFragment();
+                break;
+            case 3:
+                fragment = new RoomMeListFragment();
+                break;
+            default:
+                break;
+        }
+        if (fragment != null) {
+            fragMan = getFragmentManager();
+            tx = fragMan.beginTransaction();
+            tx.replace(R.id.ah_content_frame, fragment).addToBackStack("tag").commit();
+            Toast.makeText(getApplicationContext(), "THIS MOOOOOOOO", Toast.LENGTH_LONG).show();
+
+            nav_list.setItemChecked(position, true);
+            nav_list.setSelection(position);
+            setTitle(nav_actions[position]);
+            nav_drawer_layout.closeDrawer(nav_list);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "THIS DIDNT WORK", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        nav_title = title;
+        getSupportActionBar().setTitle(nav_title);
+    }
+
+    public class TestObject {
+        public int icon;
+        public String action;
+
+        public TestObject(int icon, String action) {
+            this.icon = icon;
+            this.action = action;
+        }
     }
 
     private void setupDrawer() {
@@ -168,6 +223,7 @@ public class HomeActivity extends ActionBarActivity implements AsyncJSONResponse
         System.out.println(object);
         return object;
     }
+
 }
 
 

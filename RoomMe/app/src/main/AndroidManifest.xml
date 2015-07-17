@@ -18,10 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProfileViewActivity"
-            android:label="@string/title_activity_profile_view" >
-        </activity>
-        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
