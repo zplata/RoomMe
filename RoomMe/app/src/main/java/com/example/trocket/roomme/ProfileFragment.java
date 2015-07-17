@@ -9,13 +9,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+
 public class ProfileFragment extends Fragment {
 
     private com.beardedhen.androidbootstrap.BootstrapCircleThumbnail pic;
     private TextView name;
-    private TextView tempMsg;
+    private TextView age;
     private Button addToList;
     private Button fbMSG;
+    private User exampleUser;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -29,8 +31,12 @@ public class ProfileFragment extends Fragment {
         pic = (com.beardedhen.androidbootstrap.BootstrapCircleThumbnail) rootView.findViewById(R.id.fp_user_picture);
         pic.setImage(R.drawable.isu);
 
+
+        //
         name = (TextView) rootView.findViewById(R.id.fp_name);
-        tempMsg = (TextView) rootView.findViewById(R.id.fp_msg);
+        name.setText(exampleUser.getName());
+        age = (TextView) rootView.findViewById(R.id.fp_age);
+        age.setText("Age: " + exampleUser.getAge());
         name.setText("Zach Test");
         addToList = (Button) rootView.findViewById(R.id.fp_addToList);
         fbMSG = (Button) rootView.findViewById(R.id.fp_fbMSG);

@@ -42,10 +42,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
         testObjs = new TestObject[4];
-        testObjs[0] = new TestObject(R.drawable.ic_launcher, "Home");
-        testObjs[1] = new TestObject(R.drawable.ic_launcher, "My Profile");
-        testObjs[2] = new TestObject(R.drawable.ic_launcher, "Edit Profile");
-        testObjs[3] = new TestObject(R.drawable.ic_launcher, "RoomMe List");
+        testObjs[0] = new TestObject(R.drawable.action_search, "Home");
+        testObjs[1] = new TestObject(R.drawable.action_search, "My Profile");
+        testObjs[2] = new TestObject(R.drawable.action_search, "Edit Profile");
+        testObjs[3] = new TestObject(R.drawable.action_search, "RoomMe List");
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
         nav_list = (ListView) findViewById(R.id.ah_nav_list);

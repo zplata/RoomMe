@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 
 public class ProfileEditFragment extends Fragment {
 
-    // TODO: Rename and change types and number of parameters
+
+
     public ProfileEditFragment() {
 
     }

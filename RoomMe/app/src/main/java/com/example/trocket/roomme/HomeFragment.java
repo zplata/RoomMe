@@ -30,9 +30,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Dummy data
+
         for(int i = 0; i < 10; i++) {
-            userList.add(i, new User());
+            userList.add(i, new User("Replace This w/ a Users name", 21));
         }
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);

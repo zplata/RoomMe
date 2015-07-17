@@ -5,9 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class RoomMeListFragment extends Fragment {
+
+    private ArrayList<User> userList = new ArrayList<User>();
+    private UserArrayAdapter adapter;
+
+    private ListView list;
+
     public RoomMeListFragment() {
         // Required empty public constructor
     }
@@ -16,7 +26,27 @@ public class RoomMeListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_room_me_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_room_me_list, container, false);
+
+
+        for(int i = 0; i < 10; i++) {
+            userList.add(i, new User("Replace This", 21));
+        }
+
+        list = (ListView) rootView.findViewById(R.id.frml_users_list);
+        adapter = new UserArrayAdapter(getActivity(), userList);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getActivity().getFragmentManager().beginTransaction().replace(R.id.ah_content_frame,
+                        new ProfileFragment()).commit();
+            }
+        });
+
+
+        return rootView;
     }
 
 }
