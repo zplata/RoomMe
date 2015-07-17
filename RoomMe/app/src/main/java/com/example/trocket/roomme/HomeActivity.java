@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
 
         //Execute the JsonAccessor with an Api address
         //This is an example
-        //jsonGetter.execute("http://date.jsontest.com/");
+        //jsonGetter.execute("http://roomme.azurewebsites.net/Api/user");
 
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
@@ -218,9 +218,9 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
 
     //onJsonProcessFinish is automatically called when the JsonAccessor finishes
     //object should be a string that contains the JSON data from the given URL
-    public String onJsonProcessFinish(String object)
+    public ArrayList<User> onJsonProcessFinish(ArrayList<User> object)
     {
-        System.out.println(object);
+        //You can add code here to have mainActivity handle the passed in user list
         return object;
     }
 
