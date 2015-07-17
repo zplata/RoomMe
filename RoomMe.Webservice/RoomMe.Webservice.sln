@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomMe.Webservice.Models", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomMe.Webservice.Repository", "RoomMe.Webservice.Repository\RoomMe.Webservice.Repository.csproj", "{0BC06E26-FC8C-49B6-AE61-89D75FE4BE6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomMe.Webservice.Console", "RoomMe.Webservice.Console\RoomMe.Webservice.Console.csproj", "{45AE140B-1104-4DB7-A77B-72ECA200B655}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0BC06E26-FC8C-49B6-AE61-89D75FE4BE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BC06E26-FC8C-49B6-AE61-89D75FE4BE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BC06E26-FC8C-49B6-AE61-89D75FE4BE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45AE140B-1104-4DB7-A77B-72ECA200B655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45AE140B-1104-4DB7-A77B-72ECA200B655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45AE140B-1104-4DB7-A77B-72ECA200B655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45AE140B-1104-4DB7-A77B-72ECA200B655}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
