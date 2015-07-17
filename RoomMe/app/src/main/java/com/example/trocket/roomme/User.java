@@ -7,12 +7,16 @@ public class User {
 
     private String fullName;
     private int age;
-    private double matchScore;
     private String phoneNumber;
     private String email;
     private double HousingPrice;
 
 
+    /**
+     * Sample user for now. Will make larger eventually.
+     * @param name
+     * @param age
+     */
     public User(String name, int age) {
         fullName = name;
         this.age = age;
