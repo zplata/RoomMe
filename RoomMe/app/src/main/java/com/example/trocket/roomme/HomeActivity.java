@@ -21,11 +21,11 @@ import java.util.ArrayList;
 
 
 
-public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse{
+public class HomeActivity extends AppCompatActivity{
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
-    JsonAccessor jsonGetter = new JsonAccessor();
+
 
     private ListView list;
 
@@ -41,12 +41,14 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
 
     private FragmentManager fragMan;
     private FragmentTransaction tx;
+    getUsersAsync getUsers;
+    getCareersAsync getCareers;
+    getLocationsAsync getLocations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        jsonGetter.delegate = this;
 
         getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
 
@@ -63,9 +65,10 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
         testObjs[3] = new TestObject(R.drawable.action_search, "RoomMe List");
 
 
-        //Execute the JsonAccessor with an Api address
+        //Execute a JsonGetter. It will call a response method when it finishes
         //This is an example
-        //jsonGetter.execute("http://roomme.azurewebsites.net/Api/user");
+        getUsers = new getUsersAsync(this);
+        getUsers.execute(1);
 
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
@@ -216,13 +219,21 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
         return super.onOptionsItemSelected(item);
     }
 
-    //onJsonProcessFinish is automatically called when the JsonAccessor finishes
-    //object should be a string that contains the JSON data from the given URL
-    public ArrayList<User> onJsonProcessFinish(ArrayList<User> object)
+    //Response methods are automatically called when the getAsync method finishes
+    //object passed in should be an arraylist of appropriate type
+    void getUsersResponse( ArrayList<User> result)
     {
-        //You can add code here to have mainActivity handle the passed in user list
-        return object;
+        System.out.println(result.get(0).getName());
     }
+
+    void getLocationsResponse( ArrayList result)
+    {
+    }
+
+    void getCareersResponse( ArrayList result)
+    {
+    }
+
 
 }
 
