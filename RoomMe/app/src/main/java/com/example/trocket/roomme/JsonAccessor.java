@@ -19,9 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by Billy on 7/15/15.
  */
-public class JsonAccessor extends AsyncTask<String, Void, ArrayList<User>>{
-
-    public AsyncJSONResponse delegate = null;
+public class JsonAccessor {
 
     //getJSON is called from the asyncronous method doInBackground
     //This method takes a url, and tries to retrieve a JSON string from that location
@@ -60,29 +58,6 @@ public class JsonAccessor extends AsyncTask<String, Void, ArrayList<User>>{
 
         return builder.toString();
 
-    }
-
-    //doInBackground is the method called when a JsonAccessor.execute("url") is called
-    @Override
-    protected ArrayList<User> doInBackground(String...urls)
-    {
-        try{
-            //urls[0] is the first argument given, in this case it is the URL to be accessed
-            String derp = getJSON(urls[0]);
-
-            ArrayList<User> userList = JsonParser.parseJSONForUsers(derp);
-            //System.out.println(derp);
-            return userList;
-        }
-        catch(Exception e)
-        {
-            return null;
-        }
-    }
-
-    protected void onPostExecute(ArrayList<User> result)
-    {
-        delegate.onJsonProcessFinish(result);
     }
 
 }
