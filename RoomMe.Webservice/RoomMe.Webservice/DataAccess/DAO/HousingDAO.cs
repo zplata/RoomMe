@@ -15,6 +15,15 @@ namespace RoomMe.Webservice.DataAccess.DAO
             _context = context;
         }
 
+        public Housing GetHousingByID(int housingID)
+        {
+            using(var db = new RoomMeWebserviceContext())
+            {
+                var housing = db.Housings.Find(housingID);
+                return housing;
+            }
+        }
+
         public Housing GetHousingByUserID(int userID)
         {
             using(var db = new RoomMeWebserviceContext())

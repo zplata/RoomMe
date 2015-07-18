@@ -15,6 +15,14 @@ namespace RoomMe.Webservice.DataAccess.DAO
             _context = context;
         }
 
+        public Tag GetTagByID(int tagID)
+        {
+            using (var db = new RoomMeWebserviceContext())
+            {
+                return db.Tags.Find(tagID);
+            }
+        }
+
         public List<Tag> GetTagsByUserID(int userID)
         {
             using(var db = new RoomMeWebserviceContext())

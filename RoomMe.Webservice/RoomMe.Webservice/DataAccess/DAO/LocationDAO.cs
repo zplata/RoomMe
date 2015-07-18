@@ -14,6 +14,15 @@ namespace RoomMe.Webservice.DataAccess.DAO
             _context = context;
         }
 
+        public Location GetLocationByID(int locationID)
+        {
+            using (var db = new RoomMeWebserviceContext())
+            {
+                var location = db.Locations.Find(locationID);
+                return location;
+            }
+        }
+
         public List<Location> GetLocationsByPreferenceID(int preferenceID)
         {
             using (var db = new RoomMeWebserviceContext())

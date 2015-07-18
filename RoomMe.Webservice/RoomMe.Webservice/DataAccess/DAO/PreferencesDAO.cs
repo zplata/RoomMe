@@ -14,6 +14,14 @@ namespace RoomMe.Webservice.DataAccess.DAO
             _context = context;
         }
 
+        public Preferences GetPreferencesByID(int prefID)
+        {
+            using(var db = new RoomMeWebserviceContext())
+            {
+                return db.Preferences.Find(prefID);
+            }
+        }
+
         public Preferences GetPreferencesByUserID(int userID)
         {
             using(var db = new RoomMeWebserviceContext())
