@@ -72,6 +72,7 @@ public class JsonAccessor extends AsyncTask<String, Void, ArrayList<User>>{
 
             ArrayList<User> userList = JsonParser.parseJSONForUsers(derp);
             //System.out.println(derp);
+            System.out.println(userList);
             return userList;
         }
         catch(Exception e)

@@ -19,9 +19,9 @@ public class UserArrayAdapter extends ArrayAdapter<User> {
 
     public UserArrayAdapter(Context context, ArrayList<User> values) {
         super(context, R.layout.user_list_view, values);
-        this.context = context;
-        this.values = values;
-    }
+    this.context = context;
+    this.values = values;
+}
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

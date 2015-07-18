@@ -21,11 +21,10 @@ import java.util.ArrayList;
 
 
 
-public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse{
+public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUserSelectedListener {
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
-    JsonAccessor jsonGetter = new JsonAccessor();
 
     private ListView list;
 
@@ -46,8 +45,6 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        jsonGetter.delegate = this;
-
         getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
 
         //int test = yayJson.derp();
@@ -82,6 +79,16 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+    }
+
+    @Override
+    public void onUserSelected(User position) {
+        ProfileFragment pro_frag = new ProfileFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(ProfileFragment.ARG_POSITION, position);
+        pro_frag.setArguments(args);
+
+        getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, pro_frag).commit();
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener{
@@ -120,7 +127,6 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
             fragMan = getFragmentManager();
             tx = fragMan.beginTransaction();
             tx.replace(R.id.ah_content_frame, fragment).addToBackStack("tag").commit();
-            Toast.makeText(getApplicationContext(), "THIS MOOOOOOOO", Toast.LENGTH_LONG).show();
 
             nav_list.setItemChecked(position, true);
             nav_list.setSelection(position);
@@ -216,13 +222,6 @@ public class HomeActivity extends AppCompatActivity implements AsyncJSONResponse
         return super.onOptionsItemSelected(item);
     }
 
-    //onJsonProcessFinish is automatically called when the JsonAccessor finishes
-    //object should be a string that contains the JSON data from the given URL
-    public ArrayList<User> onJsonProcessFinish(ArrayList<User> object)
-    {
-        //You can add code here to have mainActivity handle the passed in user list
-        return object;
-    }
 
 }
 

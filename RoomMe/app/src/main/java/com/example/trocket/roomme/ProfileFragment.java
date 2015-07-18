@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
 
 public class ProfileFragment extends Fragment {
@@ -17,7 +18,11 @@ public class ProfileFragment extends Fragment {
     private TextView age;
     private Button addToList;
     private Button fbMSG;
-    private User exampleUser;
+    private ArrayList<User> user;
+
+    //private JsonAccessor jsonGetter;
+
+    final static String ARG_POSITION = "position";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -26,13 +31,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         pic = (com.beardedhen.androidbootstrap.BootstrapCircleThumbnail) rootView.findViewById(R.id.fp_user_picture);
         pic.setImage(R.drawable.isu);
 
-
-        //
         name = (TextView) rootView.findViewById(R.id.fp_name);
         name.setText("Where Name Goes");
         age = (TextView) rootView.findViewById(R.id.fp_age);
@@ -40,9 +43,28 @@ public class ProfileFragment extends Fragment {
         addToList = (Button) rootView.findViewById(R.id.fp_addToList);
         fbMSG = (Button) rootView.findViewById(R.id.fp_fbMSG);
 
-
+        Bundle args = getArguments();
+        if(args != null) {
+            updateProfileView((User) args.getParcelable(ProfileFragment.ARG_POSITION));
+        }
 
         return rootView;
     }
+
+   /* @Override
+    public void onStart() {
+        super.onStart();
+
+        Bundle args = getArguments();
+        if (args != null) {
+            updateProfileView((User) args.getParcelable(ProfileFragment.ARG_POSITION));
+        }
+    }*/
+
+    public void updateProfileView(User position) {
+        name.setText(position.getName());
+        age.setText(position.getAge());
+    }
+
 
 }
