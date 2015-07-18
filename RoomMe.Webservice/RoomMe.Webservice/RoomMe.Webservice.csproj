@@ -147,6 +147,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CareerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HousingController.cs" />
@@ -197,6 +198,10 @@
     <Compile Include="Migrations\201507180403159_v6.cs" />
     <Compile Include="Migrations\201507180403159_v6.Designer.cs">
       <DependentUpon>201507180403159_v6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507180808120_v7_Auth.cs" />
+    <Compile Include="Migrations\201507180808120_v7_Auth.Designer.cs">
+      <DependentUpon>201507180808120_v7_Auth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RoomMeWebserviceContext.cs" />
@@ -284,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507180403159_v6.resx">
       <DependentUpon>201507180403159_v6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507180808120_v7_Auth.resx">
+      <DependentUpon>201507180808120_v7_Auth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
