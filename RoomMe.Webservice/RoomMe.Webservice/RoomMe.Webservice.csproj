@@ -147,10 +147,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CareerController.cs" />
+    <Compile Include="Controllers\FavoritesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HousingController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\MinCareerController.cs" />
+    <Compile Include="Controllers\MinFavoritesController.cs" />
     <Compile Include="Controllers\MinHousingController.cs" />
     <Compile Include="Controllers\minLocationController.cs" />
     <Compile Include="Controllers\MinPreferencesController.cs" />
@@ -178,6 +180,10 @@
     <Compile Include="Migrations\201507160425361_v3.cs" />
     <Compile Include="Migrations\201507160425361_v3.Designer.cs">
       <DependentUpon>201507160425361_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507180318345_v4.cs" />
+    <Compile Include="Migrations\201507180318345_v4.Designer.cs">
+      <DependentUpon>201507180318345_v4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RoomMeWebserviceContext.cs" />
@@ -254,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507160425361_v3.resx">
       <DependentUpon>201507160425361_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507180318345_v4.resx">
+      <DependentUpon>201507180318345_v4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

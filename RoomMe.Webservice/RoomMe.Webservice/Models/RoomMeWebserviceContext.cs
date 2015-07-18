@@ -30,6 +30,8 @@ namespace RoomMe.Webservice.Models
         public System.Data.Entity.DbSet<RoomMe.Webservice.Models.Tag> Tags { get; set; }
 
         public System.Data.Entity.DbSet<RoomMe.Webservice.Models.Housing> Housings { get; set; }
+
+        public System.Data.Entity.DbSet<RoomMe.Webservice.Models.EntityFramework.Favorites> Favorites { get; set; }
     
     }
 }

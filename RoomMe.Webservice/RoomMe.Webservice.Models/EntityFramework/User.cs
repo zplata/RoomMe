@@ -1,4 +1,5 @@
 ﻿using RoomMe.Webservice.Models.API;
+using RoomMe.Webservice.Models.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,10 +21,9 @@ namespace RoomMe.Webservice.Models
         public virtual Career Job { get; set; }
         public virtual Housing Housing { get; set; }
         public Status Status { get; set; }
+        public virtual Favorites Favorites {get; set;}
         public virtual List<Tag> Tags { get; set; }
-        public int PreferencesID { get; set; }
         public virtual Preferences Preferences { get; set; } // hmmm maybe a list of preferences using enum/value structure...?
-        public virtual List<User> Favorites { get; set; }
         public double HousingPrice { get; set; }
 
         // todo: matches and suggestions. Suggestions shouldn't be stored with the user because it stores state and could be stale.

@@ -16,7 +16,7 @@ namespace RoomMe.Webservice.Migrations
 
         protected override void Seed(RoomMe.Webservice.Models.RoomMeWebserviceContext context)
         {
-            context.Careers.AddOrUpdate(x => x.CareerID,
+            context.Careers.AddOrUpdate(x => x.Company,
                 new Career()
                 {
                     CareerID = 1,
@@ -41,10 +41,6 @@ namespace RoomMe.Webservice.Migrations
                 }
                 );
 
-            var career1 = context.Careers.Find(1);
-            var career2 = context.Careers.Find(2);
-            var career3 = context.Careers.Find(3);
-
             context.Locations.AddOrUpdate(x => x.LocationID,
                 new Location() 
                 {
@@ -68,50 +64,38 @@ namespace RoomMe.Webservice.Migrations
                 }
                 );
 
-            var location1 = context.Locations.Find(1);
-            var location2 = context.Locations.Find(2);
-            var location3 = context.Locations.Find(3);
-
-            context.Tags.AddOrUpdate(x => x.TagID,
+            context.Tags.AddOrUpdate(x => x.Name,
                 new Tag() { TagID = 1, Name = "Test Tag 1", Users = null },
                 new Tag() { TagID = 2, Name = "Test Tag 2", Users = null },
                 new Tag() { TagID = 3, Name = "Test Tag 3", Users = null }
                 );
 
-            var tag1 = context.Tags.Find(1);
-            var tag2 = context.Tags.Find(2);
-            var tag3 = context.Tags.Find(3);
-
-            context.Housings.AddOrUpdate(x => x.HousingID,
+            context.Housings.AddOrUpdate(x => x.Name,
                 new Housing() 
                 {
                     HousingID = 1,
                     Address = "Test Address 1", 
-                    Location = location1,
+                    LocationID = 1,
                     Name = "Test Housing 1",
                     Residents = null
                 },
                 new Housing() 
                 {
                     HousingID = 2,
-                    Address = "Test Address 2", 
-                    Location = location2,
+                    Address = "Test Address 2",
+                    LocationID = 2,
                     Name = "Test Housing 2",
                     Residents = null
                 },
                 new Housing() 
                 {
                     HousingID = 3,
-                    Address = "Test Address 3", 
-                    Location = location3,
+                    Address = "Test Address 3",
+                    LocationID = 3,
                     Name = "Test Housing 3",
                     Residents = null
                 }
                 );
-
-            var housing1 = context.Housings.Find(1);
-            var housing2 = context.Housings.Find(2);
-            var housing3 = context.Housings.Find(3);
 
             context.Preferences.AddOrUpdate(x => x.PreferencesID,
                 new Preferences()
@@ -119,14 +103,11 @@ namespace RoomMe.Webservice.Migrations
                     PreferencesID = 1,
                     Age = 1,
                     Gender = Gender.Male,
-                    Locations = new List<Location> { location1, location2, location3 },
+                    Locations = null,
                     LowerPriceLimit = 0,
                     UpperPriceLimit = 1,
-                    Tags = new List<Tag> 
-                    {
-                        tag1, tag2, tag3
-                    },
-                    Housings = new List<Housing> { housing1, housing2, housing3 }
+                    Tags = null,
+                    Housings = null
                 },
 
                 new Preferences()
@@ -164,11 +145,7 @@ namespace RoomMe.Webservice.Migrations
                 }
                 );
 
-            var pref1 = context.Preferences.Find(1);
-            var pref2 = context.Preferences.Find(2);
-            var pref3 = context.Preferences.Find(3);
-
-            context.Users.AddOrUpdate(x => x.UserID,
+            context.Users.AddOrUpdate(x => x.Name,
                 new User()
                 {
                     UserID = 1,
@@ -179,10 +156,10 @@ namespace RoomMe.Webservice.Migrations
                     Email = "testEmail1@test.com",
                     Status = Status.HasVacancy,
                     Favorites = null,
-                    Job = career1,
-                    PreferencesID = 1,
-                    Tags = new List<Tag> {tag1, tag2, tag3 },
-                    Housing = housing1,
+                    Job = null,
+                    Preferences = null,
+                    Tags = null,
+                    Housing = null,
                     HousingPrice = 500
                 },
 
@@ -197,7 +174,7 @@ namespace RoomMe.Webservice.Migrations
                     Status = Status.NeedsHousingAndRoommate,
                     Favorites = null,
                     Job = null,
-                    PreferencesID = 2,
+                    Preferences = null,
                     Tags = null,
                     Housing = null,
                     HousingPrice = 600
@@ -214,7 +191,7 @@ namespace RoomMe.Webservice.Migrations
                     Status = Status.NeedsRoommateOnly,
                     Favorites = null,
                     Job = null,
-                    PreferencesID = 2,
+                    Preferences = null,
                     Tags = null,
                     Housing = null,
                     HousingPrice = 700
@@ -222,10 +199,7 @@ namespace RoomMe.Webservice.Migrations
 
                 );
 
-            var user1 = context.Users.Find(1);
-            var user2 = context.Users.Find(2);
-            var user3 = context.Users.Find(3);
-
+            /*
             context.Users.AddOrUpdate(x => x.UserID,
                 new User()
                 {
@@ -236,13 +210,15 @@ namespace RoomMe.Webservice.Migrations
                     Gender = Gender.Female,
                     Email = "testEmail4@test.com",
                     Status = Status.Inactive,
-                    Favorites = new List<User> { user1, user2, user3 },
+                    Favorites = null,
                     Job = career1,
-                    PreferencesID = 4,
+                    Preferences = null,
                     Tags = new List<Tag> { tag1, tag2, tag3 },
                     Housing = housing1,
                     HousingPrice = 800
                 });
+             **/
         }
+             
     }
 }
