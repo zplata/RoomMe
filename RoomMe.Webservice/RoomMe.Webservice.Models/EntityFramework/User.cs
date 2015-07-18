@@ -40,7 +40,8 @@ namespace RoomMe.Webservice.Models
                 Name = this.Name,
                 PhoneNumber = this.PhoneNumber,
                 Status = this.Status,
-                Bio = this.Bio
+                Bio = this.Bio,
+                FavoritedUserIDs = this.FavoritedUserIDs
             };
         }
     }
