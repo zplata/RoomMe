@@ -14,7 +14,7 @@ namespace RoomMe.Webservice.DataAccess.DAO
             _context = context;
         }
 
-        Career GetByUserID(int userID)
+        public Career GetByUserID(int userID)
         {
             using( var db = new RoomMeWebserviceContext())
             {
