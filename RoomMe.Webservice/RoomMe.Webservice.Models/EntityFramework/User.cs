@@ -1,5 +1,4 @@
 ﻿using RoomMe.Webservice.Models.API;
-using RoomMe.Webservice.Models.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,10 +17,11 @@ namespace RoomMe.Webservice.Models
         public int Age { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public string Bio { get; set; }
         public virtual Career Job { get; set; }
         public virtual Housing Housing { get; set; }
         public Status Status { get; set; }
-        public virtual Favorites Favorites {get; set;}
+        public List<int> FavoritedUserIDs {get; set;}
         public virtual List<Tag> Tags { get; set; }
         public virtual Preferences Preferences { get; set; } // hmmm maybe a list of preferences using enum/value structure...?
         public double HousingPrice { get; set; }
@@ -40,6 +40,7 @@ namespace RoomMe.Webservice.Models
                 Name = this.Name,
                 PhoneNumber = this.PhoneNumber,
                 Status = this.Status,
+                Bio = this.Bio
             };
         }
     }

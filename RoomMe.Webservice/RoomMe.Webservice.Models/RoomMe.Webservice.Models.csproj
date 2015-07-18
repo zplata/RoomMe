@@ -51,14 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\APICareer.cs" />
-    <Compile Include="API\APIFavorites.cs" />
     <Compile Include="API\APIHousing.cs" />
     <Compile Include="API\APILocation.cs" />
     <Compile Include="API\APIPreferences.cs" />
     <Compile Include="API\APITag.cs" />
     <Compile Include="API\APIUser.cs" />
     <Compile Include="EntityFramework\Career.cs" />
-    <Compile Include="EntityFramework\Favorites.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="EntityFramework\Housing.cs" />
     <Compile Include="EntityFramework\Location.cs" />

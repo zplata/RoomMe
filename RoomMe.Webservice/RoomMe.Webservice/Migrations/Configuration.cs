@@ -155,12 +155,13 @@ namespace RoomMe.Webservice.Migrations
                     Gender = Gender.Male,
                     Email = "testEmail1@test.com",
                     Status = Status.HasVacancy,
-                    Favorites = null,
+                    FavoritedUserIDs = null,
                     Job = null,
                     Preferences = null,
                     Tags = null,
                     Housing = null,
-                    HousingPrice = 500
+                    HousingPrice = 500,
+                    Bio = "Test Bio 1"
                 },
 
                 new User()
@@ -172,12 +173,13 @@ namespace RoomMe.Webservice.Migrations
                     Gender = Gender.Female,
                     Email = "testEmail2@test.com",
                     Status = Status.NeedsHousingAndRoommate,
-                    Favorites = null,
+                    FavoritedUserIDs = null,
                     Job = null,
                     Preferences = null,
                     Tags = null,
                     Housing = null,
-                    HousingPrice = 600
+                    HousingPrice = 600,
+                    Bio = "Test Bio 2"
                 },
 
                 new User()
@@ -189,12 +191,13 @@ namespace RoomMe.Webservice.Migrations
                     Gender = Gender.Male,
                     Email = "testEmail3@test.com",
                     Status = Status.NeedsRoommateOnly,
-                    Favorites = null,
+                    FavoritedUserIDs = null,
                     Job = null,
                     Preferences = null,
                     Tags = null,
                     Housing = null,
-                    HousingPrice = 700
+                    HousingPrice = 700,
+                    Bio = "Test Bio 3"
                 }
 
                 );
