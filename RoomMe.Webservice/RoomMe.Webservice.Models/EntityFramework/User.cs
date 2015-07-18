@@ -26,6 +26,8 @@ namespace RoomMe.Webservice.Models
         public virtual Preferences Preferences { get; set; } // hmmm maybe a list of preferences using enum/value structure...?
         public double HousingPrice { get; set; }
 
+        public string AuthToken { get; set; }
+
         // todo: matches and suggestions. Suggestions shouldn't be stored with the user because it stores state and could be stale.
 
         public APIUser ToAPIModel()
@@ -41,7 +43,8 @@ namespace RoomMe.Webservice.Models
                 PhoneNumber = this.PhoneNumber,
                 Status = this.Status,
                 Bio = this.Bio,
-                FavoritedUserIDs = this.FavoritedUserIDs
+                FavoritedUserIDs = this.FavoritedUserIDs,
+                AuthToken = this.AuthToken
             };
         }
     }
