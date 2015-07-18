@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DataAccess\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -160,6 +161,12 @@
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DataAccess\DAO\CareerDAO.cs" />
+    <Compile Include="DataAccess\DAO\HousingDAO.cs" />
+    <Compile Include="DataAccess\DAO\LocationDAO.cs" />
+    <Compile Include="DataAccess\DAO\PreferencesDAO.cs" />
+    <Compile Include="DataAccess\DAO\TagDAO.cs" />
+    <Compile Include="DataAccess\DAO\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
