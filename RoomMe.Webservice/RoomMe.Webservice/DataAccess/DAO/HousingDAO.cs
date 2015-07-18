@@ -6,25 +6,29 @@ using System.Web;
 
 namespace RoomMe.Webservice.DataAccess.DAO
 {
-    public class CareerDAO
+    public class HousingDAO
     {
         private RoomMeWebserviceContext _context = null;
-        public CareerDAO(RoomMeWebserviceContext context)
+
+        public HousingDAO(RoomMeWebserviceContext context)
         {
             _context = context;
         }
 
-        Career GetByUserID(int userID)
+        Housing GetHousingByUserID(int userID)
         {
-            using( var db = new RoomMeWebserviceContext())
+            using(var db = new RoomMeWebserviceContext())
             {
-                User user = _context.Users.Find(userID);
-                if (user != null)
+                var user = db.Users.Find(userID);
+                if(user != null)
                 {
                     db.Users.Attach(user);
-                    return user.Job;
+                    var result = db.Housings.Where(x => x.Residents.Contains(user));
+                    return result.First();
                 }
+
                 return null;
+                
             }
         }
     }
