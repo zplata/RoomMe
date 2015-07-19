@@ -155,6 +155,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HousingController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\MinCareerController.cs" />
     <Compile Include="Controllers\MinHousingController.cs" />
     <Compile Include="Controllers\MinLocationController.cs" />
