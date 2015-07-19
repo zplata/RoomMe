@@ -36,7 +36,7 @@ public class getUsersAsync extends AsyncTask<Integer, Void, ArrayList<User>> {
                 selected = 999;
             }
             //urls[0] is the first argument given, in this case it is the URL to be accessed
-            String derp = JsonAccessor.getJSON("http://roomme.azurewebsites.net/Api/user");
+            String derp = JsonAccessor.getJSON("http://roomme.azurewebsites.net/Api/minuser");
 
             ArrayList<User> userList = JsonParser.parseJSONForUsers(derp);
             //System.out.println(derp);
