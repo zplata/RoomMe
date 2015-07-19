@@ -14,7 +14,7 @@ namespace RoomMe.Webservice.Console
     {
         static void Main(string[] args)
         {
-            RunAsync().Wait();
+            SeedData();
             System.Console.ReadLine();
         }
 
@@ -62,6 +62,7 @@ namespace RoomMe.Webservice.Console
             };
 
             var locations = new List<Location> { l1, l2, l3, l4, l5, l6 };
+            db.Locations.AddRange(locations);
 
             var h1 = new Housing
             {
@@ -105,7 +106,8 @@ namespace RoomMe.Webservice.Console
                 LocationID = l6.LocationID
             };
 
-            var housigns = new List<Housing> { h1, h2, h3, h4, h5, h6 };
+            var housings = new List<Housing> { h1, h2, h3, h4, h5, h6 };
+            db.Housings.AddRange(housings);
 
             var t1 = new Tag { Name = "Politics" };
             var t2 = new Tag { Name = "Theater" };
@@ -225,7 +227,6 @@ namespace RoomMe.Webservice.Console
             };
 
             var prefs = new List<Preferences> { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 };
-
             db.Preferences.AddRange(prefs);
 
             var c1 = new Career
@@ -289,7 +290,6 @@ namespace RoomMe.Webservice.Console
             };
 
             var careers = new List<Career> { c1, c2, c3, c4, c5, c6, c7, c8, c9, c10 };
-
             db.Careers.AddRange(careers);
 
             var u1 = new User
@@ -302,7 +302,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.NeedsHousingAndRoommate,
 			    Bio = "Going to see a play tonight, hope it goes off with a bang.",
                 FavoritedUserIDs = null,
-                Preferences = p1
+                Preferences = p1,
+                Job = c1,
+                Tags = new List<Tag> { t1, t2, t3, t4, t29},
             };
 
             db.Users.Add(u1);
@@ -317,7 +319,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.NeedsHousingAndRoommate,
                 Bio = "2 TERMS!!! 'Bout to leave da white house, need a new crib to chill in",
                 FavoritedUserIDs = null,
-                Preferences = p2
+                Preferences = p2,
+                Job = c2,
+                Tags = new List<Tag> { t1, t5, t7, t31 }
             };
             db.Users.Add(u2);
 
@@ -331,7 +335,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.HasVacancy,
                 Bio = "I have one very large...Dog. I have a very bad feeling about this...",
                 FavoritedUserIDs = null,
-                Preferences =  p3
+                Preferences =  p3,
+                Job = c3,
+                Tags = new List<Tag> { t8, t9, t5, t27, t31 }
             };
             db.Users.Add(u3);
 
@@ -345,7 +351,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.NeedsHousingAndRoommate,
                 Bio = "I need a roommate who can rival my level of swole. Hasta la Vista, Baby.",
                 FavoritedUserIDs = null,
-                Preferences = p4
+                Preferences = p4,
+                Job = c4,
+                Tags = new List<Tag> { t1, t2, t5, t7, t11, t12, t13, t16, t23, t29 }
             };
             db.Users.Add(u4);
 
@@ -359,7 +367,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.NeedsRoommateOnly,
                 Bio = "I put all my old Roommate's things in a box to the left. He should have put a ring on it",
                 FavoritedUserIDs = null,
-                Preferences = p5
+                Preferences = p5,
+                Job = c5,
+                Tags = new List<Tag> { t9, t2 }
             };
             db.Users.Add(u5);
 
@@ -373,7 +383,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.HasVacancy,
                 Bio = "I am The Batman. The available Room is cold, clammy and full of bats.",
                 FavoritedUserIDs = null,
-                Preferences = p6
+                Preferences = p6,
+                Job = c6,
+                Tags = new List<Tag> { t12, t16, t17, t18, t19, t29, t31 }
             };
             db.Users.Add(u6);
 
@@ -387,7 +399,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.HasVacancy,
                 Bio = "Shiver me timbers! I be havin an open room on me poopdeck",
                 FavoritedUserIDs = null,
-                Preferences = p7
+                Preferences = p7,
+                Job = c7,
+                Tags = new List<Tag> { t21, t22, t7, t5 }
             };
             db.Users.Add(u7);
 
@@ -401,7 +415,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.HasVacancy,
                 Bio = "Looking for roommates who can lend an ear. Must be okay with my Pigeon Collection",
                 FavoritedUserIDs = null,
-                Preferences = p8
+                Preferences = p8,
+                Job = c8,
+                Tags = new List<Tag> {t23, t24, t25, t17 }
             };
             db.Users.Add(u8);
 
@@ -415,7 +431,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.NeedsHousingAndRoommate,
                 Bio = "Zach is bae, Zach is life.",
                 FavoritedUserIDs = null,
-                Preferences = p9
+                Preferences = p9,
+                Job = c9,
+                Tags = new List<Tag> { t32, t14, t15, t10 }
             };
             db.Users.Add(u9);
 
@@ -429,7 +447,9 @@ namespace RoomMe.Webservice.Console
                 Status = Status.HasVacancy,
                 Bio = "Just trying to get ahead in life. Trying to fill a vacancy in my keep, Winterfell",
                 FavoritedUserIDs = null,
-                Preferences = p10
+                Preferences = p10,
+                Job = c10,
+                Tags = new List<Tag> { t26, t29, t9, t30, t28, t7 }
             };
             db.Users.Add(u10);
 
