@@ -11,6 +11,7 @@ namespace RoomMe.Webservice.Migrations
     {
         public Configuration()
         {
+            //AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Directory.GetCurrentDirectory());
             AutomaticMigrationsEnabled = false;
         }
 
