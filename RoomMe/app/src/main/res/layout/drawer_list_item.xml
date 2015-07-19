@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dli_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -6,13 +7,13 @@
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:padding="10dp" >
 
-    <ImageView
+    <com.beardedhen.androidbootstrap.FontAwesomeText
         android:id="@+id/dli_icon"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:paddingRight="10dp" />
+        android:layout_width="wrap_content"
+        fontawesometext:fa_icon="fa-home"
+        android:layout_margin="10dp"
+        />
 
     <TextView
         android:id="@+id/dli_action"

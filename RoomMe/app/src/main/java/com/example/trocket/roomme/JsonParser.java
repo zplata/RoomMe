@@ -4,6 +4,7 @@ package com.example.trocket.roomme;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -23,14 +24,26 @@ public class JsonParser {
             for (int i=0; i < jsonArray.length(); i++)
             {
                 JSONObject user = jsonArray.getJSONObject(i);
-                String tempName = null;
-                String tempAge = null;
+                String tempName, tempAge, tempID, tempGender, tempPhone, tempEmail, tempStatus, tempHousingPrice, tempBio = null;
+                //JSONArray jsonFavorites = new JSONArray(user.optJSONArray("FavoritedUserID's"));
                 tempName = user.optString("Name").toString();
                 tempAge = user.optString("Age").toString();
-                System.out.println("User Number: " + i + " Name: " + user.optString("Name").toString() + " Age: " + user.optString("Age").toString());
-                if ( tempName != null && tempAge != null)
+                tempID = user.optString("$id").toString();
+                tempGender = user.optString("Gender").toString();
+                tempPhone = user.optString("PhoneNumber").toString();
+                tempEmail = user.optString("Email").toString();
+                tempStatus = user.optString("Status").toString();
+                tempHousingPrice = user.optString("HousingPrice").toString();
+                tempBio = user.optString("Bio").toString();
+                List<Integer> tempFavorites = new ArrayList<Integer>();
+
+
+                //System.out.println("User Number: " + i + " Name: " + user.optString("Name").toString() + " Age: " + user.optString("Age").toString() + " Phone: " + user.optString("PhoneNumber").toString()+ " Gender: " + user.optString("Gender").toString()+ " Bio: " + user.optString("Bio").toString());
+                if ( tempName != null && tempAge != null && tempID != null && tempGender != null && tempStatus !=null && tempPhone!=null && tempEmail !=null && tempHousingPrice !=null && tempBio !=null)
                 {
-                    User tempUser = new User(tempName, Integer.parseInt(tempAge));
+                    //User tempUser = new User(tempName, Integer.parseInt(tempAge));
+                    User tempUser = new User(Integer.parseInt(tempID), tempName, Integer.parseInt(tempGender), Integer.parseInt(tempAge),
+                            tempPhone, tempEmail, Integer.parseInt(tempStatus), Double.parseDouble(tempHousingPrice), tempBio, tempFavorites);
                     list.add(tempUser);
                 }
             }

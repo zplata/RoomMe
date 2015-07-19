@@ -29,9 +29,6 @@ public class RoomMeListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_room_me_list, container, false);
 
 
-        for(int i = 0; i < 10; i++) {
-            userList.add(i, new User("Replace This", 21));
-        }
 
         list = (ListView) rootView.findViewById(R.id.frml_users_list);
         adapter = new UserArrayAdapter(getActivity(), userList);
