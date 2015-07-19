@@ -20,7 +20,7 @@ public class User implements Parcelable {
     private int status;
     private double housingPrice;
     private String bio;
-    private List<Integer> favoritesUserIDS;
+    private List<Integer> favoritedUserIDS;
 
     /**
      * Sample user for now. Will make larger eventually.
@@ -28,7 +28,7 @@ public class User implements Parcelable {
      * @param age
      */
     public User(int userID, String name, int gender, int age, String phoneNumber,
-                String email, int status, double housingPrice, String bio, List<Integer> favoritesUserIDS) {
+                String email, int status, double housingPrice, String bio, List<Integer> favoritedUserIDS) {
         this.userID = userID;
         fullName = name;
         this.gender = gender;
@@ -38,7 +38,7 @@ public class User implements Parcelable {
         this.status = status;
         this.housingPrice = housingPrice;
         this.bio = bio;
-        this.favoritesUserIDS = favoritesUserIDS;
+        this.favoritedUserIDS = favoritedUserIDS;
     }
 
     public int getUserID() { return userID; }
@@ -50,7 +50,7 @@ public class User implements Parcelable {
     public int getStatus() { return status; }
     public double getHousingPrice() { return housingPrice; }
     public String getBio() { return bio; }
-    public List<Integer> getFavoritesUserIDS() { return favoritesUserIDS; }
+    public List<Integer> getFavoritedUserIDS() { return favoritedUserIDS; }
     public void setPhoneNumber(String num) { phoneNumber = num;}
     public void setEmail(String email) { this.email = email; }
 
@@ -73,7 +73,7 @@ public class User implements Parcelable {
         dest.writeInt(status);
         dest.writeDouble(housingPrice);
         dest.writeString(bio);
-        dest.writeList(favoritesUserIDS);
+        dest.writeList(favoritedUserIDS);
     }
 
     private User(Parcel in) {
@@ -86,8 +86,8 @@ public class User implements Parcelable {
         this.status = in.readInt();
         this.housingPrice = in.readDouble();
         this.bio = in.readString();
-        this.favoritesUserIDS = new ArrayList<Integer>();
-        in.readList(favoritesUserIDS, null);
+        this.favoritedUserIDS = new ArrayList<Integer>();
+        in.readList(favoritedUserIDS, null);
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
