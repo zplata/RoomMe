@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DataAccess\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -160,6 +161,12 @@
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DataAccess\DAO\CareerDAO.cs" />
+    <Compile Include="DataAccess\DAO\HousingDAO.cs" />
+    <Compile Include="DataAccess\DAO\LocationDAO.cs" />
+    <Compile Include="DataAccess\DAO\PreferencesDAO.cs" />
+    <Compile Include="DataAccess\DAO\TagDAO.cs" />
+    <Compile Include="DataAccess\DAO\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +185,18 @@
     <Compile Include="Migrations\201507160425361_v3.cs" />
     <Compile Include="Migrations\201507160425361_v3.Designer.cs">
       <DependentUpon>201507160425361_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507180318345_v4.cs" />
+    <Compile Include="Migrations\201507180318345_v4.Designer.cs">
+      <DependentUpon>201507180318345_v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507180342021_v5.cs" />
+    <Compile Include="Migrations\201507180342021_v5.Designer.cs">
+      <DependentUpon>201507180342021_v5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507180403159_v6.cs" />
+    <Compile Include="Migrations\201507180403159_v6.Designer.cs">
+      <DependentUpon>201507180403159_v6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RoomMeWebserviceContext.cs" />
@@ -204,7 +223,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\roomme - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\roomme - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\roomme - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\roomme - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -254,6 +275,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507160425361_v3.resx">
       <DependentUpon>201507160425361_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507180318345_v4.resx">
+      <DependentUpon>201507180318345_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507180342021_v5.resx">
+      <DependentUpon>201507180342021_v5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507180403159_v6.resx">
+      <DependentUpon>201507180403159_v6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

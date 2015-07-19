@@ -20,6 +20,10 @@ public class HomeFragment extends Fragment {
     private ListView list;
     //private JsonAccessor jsonGetter;
 
+    getUsersAsync getUsers;
+    getCareersAsync getCareers;
+    getLocationsAsync getLocations;
+
     OnUserSelectedListener listen;
 
     public interface OnUserSelectedListener {
@@ -35,6 +39,10 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //Execute a JsonGetter. It will call a response method when it finishes
+        //This is an example
+        getUsers = new getUsersAsync((HomeActivity) getActivity());
+        getUsers.execute(1);
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Activity act = getActivity();
         listen = (OnUserSelectedListener) act;
@@ -58,6 +66,23 @@ public class HomeFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    //Response methods are automatically called when the getAsync method finishes
+    //object passed in should be an arraylist of appropriate type
+    void getUsersResponse( ArrayList<User> result)
+    {
+        System.out.println(result.get(0).getName());
+    }
+
+    void getLocationsResponse( ArrayList result)
+    {
+    }
+
+
+    void getCareersResponse( ArrayList result)
+    {
+
     }
 
 

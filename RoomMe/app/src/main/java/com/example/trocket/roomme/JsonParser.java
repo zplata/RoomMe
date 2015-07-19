@@ -43,4 +43,14 @@ public class JsonParser {
         return null;
     }
 
+    public static void parseJSONForCareers(String input)
+    {
+
+    }
+
+    public static void parseJSONForLocations(String input)
+    {
+
+    }
+
 }
