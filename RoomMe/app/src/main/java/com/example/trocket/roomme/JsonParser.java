@@ -33,13 +33,18 @@ public class JsonParser {
                 tempPhone = user.optString("PhoneNumber").toString();
                 tempEmail = user.optString("Email").toString();
                 tempStatus = user.optString("Status").toString();
-                tempHousingPrice = user.optString("HousingPrice").toString();
+                tempHousingPrice = "0";
+                if (user.optString("HousingPrice").toString() != "null")
+                {
+                    tempHousingPrice = user.optString("HousingPrice").toString();
+                }
+
                 tempBio = user.optString("Bio").toString();
                 List<Integer> tempFavorites = new ArrayList<Integer>();
 
 
                 //System.out.println("User Number: " + i + " Name: " + user.optString("Name").toString() + " Age: " + user.optString("Age").toString() + " Phone: " + user.optString("PhoneNumber").toString()+ " Gender: " + user.optString("Gender").toString()+ " Bio: " + user.optString("Bio").toString());
-                if ( tempName != null && tempAge != null && tempID != null && tempGender != null && tempStatus !=null && tempPhone!=null && tempEmail !=null && tempHousingPrice !=null && tempBio !=null)
+                if ( tempName != null && tempAge != null && tempID != null && tempGender != null && tempStatus !=null && tempPhone!=null && tempEmail !=null  && tempBio !=null)
                 {
                     //User tempUser = new User(tempName, Integer.parseInt(tempAge));
                     User tempUser = new User(Integer.parseInt(tempID), tempName, Integer.parseInt(tempGender), Integer.parseInt(tempAge),
