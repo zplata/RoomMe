@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ public class HomeFragment extends Fragment {
     public ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
     getUsersAsync getUsers;
+    postUsersAsync postUser;
 
     private ListView list;
     //private JsonAccessor jsonGetter;
@@ -42,10 +45,8 @@ public class HomeFragment extends Fragment {
         //This is an example
         getUsers = new getUsersAsync(this);
         getUsers.execute(2);
+        postUser = new postUsersAsync();
 
-        //userList.add(new User("Timmy", 1));
-        //userList.add(new User("Toomy", 2));
-        //userList.add(new User("Zach", 3));
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);
         adapter = new UserArrayAdapter(getActivity(), userList);
