@@ -33,7 +33,12 @@ public class JsonParser {
                 tempPhone = user.optString("PhoneNumber").toString();
                 tempEmail = user.optString("Email").toString();
                 tempStatus = user.optString("Status").toString();
-                //tempHousingPrice = user.optString("HousingPrice").toString();
+                tempHousingPrice = "0";
+                if (user.optString("HousingPrice").toString() != "null")
+                {
+                    tempHousingPrice = user.optString("HousingPrice").toString();
+                }
+
                 tempBio = user.optString("Bio").toString();
                 List<Integer> tempFavorites = new ArrayList<Integer>();
 
@@ -43,7 +48,7 @@ public class JsonParser {
                 {
                     //User tempUser = new User(tempName, Integer.parseInt(tempAge));
                     User tempUser = new User(Integer.parseInt(tempID), tempName, Integer.parseInt(tempGender), Integer.parseInt(tempAge),
-                            tempPhone, tempEmail, Integer.parseInt(tempStatus), Double.parseDouble("0"), tempBio, tempFavorites);
+                            tempPhone, tempEmail, Integer.parseInt(tempStatus), Double.parseDouble(tempHousingPrice), tempBio, tempFavorites);
                     list.add(tempUser);
                 }
             }
