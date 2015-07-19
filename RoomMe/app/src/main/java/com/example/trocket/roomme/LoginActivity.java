@@ -64,7 +64,8 @@ public class LoginActivity extends Activity {
         fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                loginResult.getAccessToken().getUserId();
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                LoginActivity.this.startActivity(intent);
             }
 
             @Override
