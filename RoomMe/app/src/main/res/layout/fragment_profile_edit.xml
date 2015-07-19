@@ -120,9 +120,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Career: "
+                android:id="@+id/fpe_career"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/fpe_edit_location"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fpe_edit_career"
+                android:layout_below="@+id/fpe_career"
+                android:layout_marginTop="10dp"
+                android:editable="true"
+                android:maxLines="5"
+                android:inputType="textMultiLine"
+                android:layout_centerHorizontal="true"
+                android:hint="I.e. DJ Master"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Bio:"
                 android:id="@+id/fpe_bio"
-                android:layout_below="@+id/fpe_edit_location"
+                android:layout_below="@+id/fpe_edit_career"
                 android:layout_centerHorizontal="true" />
 
             <EditText

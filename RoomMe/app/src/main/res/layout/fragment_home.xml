@@ -6,15 +6,19 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
+        android:background="#fe9201"
         >
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55sp"
             android:id="@+id/staticBanner"
             android:paddingLeft="3sp"
             android:paddingRight="3sp"
             android:text="My Feed"
+            android:background="#0B61A4"
+            android:textColor="#ffffff"
+            android:gravity="center"
             android:textSize="25sp"
             android:textStyle="normal"/>
 
