@@ -16,7 +16,7 @@ namespace RoomMe.Webservice.Controllers
         private RoomMeWebserviceContext db = new RoomMeWebserviceContext();
 
         // GET api/mincareer
-        public IQueryable<APICareer> Get()
+        public IEnumerable<APICareer> Get()
         {
             var careers = db.Careers;
 
@@ -27,7 +27,7 @@ namespace RoomMe.Webservice.Controllers
                 minCareers.Add(career.ToAPIModel());
             }
 
-            return minCareers as IQueryable<APICareer>;
+            return minCareers;
         }
 
         // GET api/mincareer/5

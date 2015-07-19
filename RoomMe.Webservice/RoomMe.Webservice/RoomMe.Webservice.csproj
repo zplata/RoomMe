@@ -157,7 +157,7 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\MinCareerController.cs" />
     <Compile Include="Controllers\MinHousingController.cs" />
-    <Compile Include="Controllers\minLocationController.cs" />
+    <Compile Include="Controllers\MinLocationController.cs" />
     <Compile Include="Controllers\MinPreferencesController.cs" />
     <Compile Include="Controllers\MinTagController.cs" />
     <Compile Include="Controllers\MinUserController.cs" />
