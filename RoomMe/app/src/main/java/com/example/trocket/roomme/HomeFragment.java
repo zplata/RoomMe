@@ -1,5 +1,6 @@
 package com.example.trocket.roomme;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,27 +14,38 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    private ArrayList<User> userList = new ArrayList<User>();
+    public ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
+    getUsersAsync getUsers;
 
     private ListView list;
+    //private JsonAccessor jsonGetter;
 
+    OnUserSelectedListener listen;
 
-    public HomeFragment() {
-        // Required empty public constructor
+    public interface OnUserSelectedListener {
+        public void onUserSelected(User position);
     }
 
+
+    public HomeFragment( ) {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        Activity act = getActivity();
+        listen = (OnUserSelectedListener) act;
+        //Execute a JsonGetter. It will call a response method when it finishes
+        //This is an example
+        getUsers = new getUsersAsync(this);
+        getUsers.execute(2);
 
-
-        for(int i = 0; i < 10; i++) {
-            userList.add(i, new User("Replace This w/ a Users name", 21));
-        }
+        //userList.add(new User("Timmy", 1));
+        //userList.add(new User("Toomy", 2));
+        //userList.add(new User("Zach", 3));
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);
         adapter = new UserArrayAdapter(getActivity(), userList);
@@ -42,8 +54,9 @@ public class HomeFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getActivity().getFragmentManager().beginTransaction().replace(R.id.ah_content_frame,
-                        new ProfileFragment()).commit();
+                listen.onUserSelected(userList.get(position));
+                /*getActivity().getFragmentManager().beginTransaction().replace(R.id.ah_content_frame,
+                new ProfileFragment()).commit();*/
             }
         });
 
@@ -51,4 +64,12 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
+    void getUsersResponse( ArrayList<User> result)
+    {
+        if (result !=null) {
+            this.userList = result;
+            adapter.addAll(result);
+            adapter.notifyDataSetChanged();
+        }
+    }
 }

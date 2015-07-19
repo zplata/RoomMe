@@ -34,7 +34,7 @@
                 android:paddingLeft="10dp"
                 android:textSize="30dp"
                 android:id="@+id/fp_name"
-                android:layout_below="@+id/pv_user_picture"
+                android:layout_below="@+id/fp_user_picture"
                 android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
