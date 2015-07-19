@@ -27,7 +27,7 @@ namespace RoomMe.Webservice.Controllers
             return "value";
         }
 
-        [Route("/register")]
+        [Route("register")]
         // POST: api/Account
         public async Task<IHttpActionResult> Register([FromBody] string email, [FromBody] string name, [FromBody] int age, [FromBody] string bio, [FromBody] int gender, [FromBody] string phone, [FromBody] string authToken)
         {
