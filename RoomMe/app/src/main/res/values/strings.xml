@@ -15,6 +15,12 @@
         <item>Edit Profile</item>
         <item>RoomMe List</item>
     </string-array>
+    <string-array name="status_options">
+        <item>Has vacancy</item>
+        <item>Needs housing and roommate</item>
+        <item>Only need roommate(s)</item>
+        <item>Inactive</item>
+    </string-array>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
