@@ -7,13 +7,13 @@ namespace RoomMe.Webservice.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class v5 : IMigrationMetadata
+    public sealed partial class v11 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(v5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v11));
         
         string IMigrationMetadata.Id
         {
-            get { return "201507180342021_v5"; }
+            get { return "201507191927596_v11"; }
         }
         
         string IMigrationMetadata.Source

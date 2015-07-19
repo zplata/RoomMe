@@ -45,7 +45,7 @@ UserID = 1,
                     PreferencesID = 3,
                     Tags = 8,9,5,27,31 
                     HousingLocation = 1	
-			              Location = "38.9432036,-94.5314035"
+			              Location = "38.9432036,-94.5314035" --1
 			              Favorites = 10,4,7
                 },
                 { 
@@ -57,7 +57,7 @@ UserID = 1,
                     CareerID = 4, 
                     Email = "Governator@california.gov", 
                     Status = Status.NeedsHousingAndRoommate,
-					          Bio = "I need a roommate who can rival my level of swole. Hasta la Vista, Baby.",
+					Bio = "I need a roommate who can rival my level of swole. Hasta la Vista, Baby.",
                     Favorites = 1,2,5,7,11,12,13,16,23,29 
                     PreferencesID = 4,
                     Tags = null, 
@@ -79,7 +79,7 @@ UserID = 1,
                     PreferencesID = 5,
                     Tags = 5,10,12,14,15,17,22 
                     HousingLocation = 2 
-			              Location = "39.0593955,-94.6002944"
+			              Location = "39.0593955,-94.6002944" --2
 			              Favorites = 9,2
 
                 },
@@ -97,7 +97,7 @@ UserID = 1,
                     PreferencesID = 6,
                     Tags = 12,16,17,18,19,29,31 
                     HousingLocation = 3
-			              Location = "39.0354776,-94.5829717"
+			              Location = "39.0354776,-94.5829717" --3
 			               Favorites = null
                 },
                 { 
@@ -114,7 +114,7 @@ UserID = 1,
                     PreferencesID = 7,
                     Tags = 21,22,7,5 
                     HousingLocation = 4 
-			              Location = "39.1024547,-94.5990768"
+			              Location = "39.1024547,-94.5990768" --4
 			              Favorites = 8,4
 
                 },
@@ -132,7 +132,7 @@ UserID = 1,
                     PreferencesID = 8,
                     Tags = 23,24,25,17 
                     HousingLocation = 5 
-			              Location = "39.0280185,-94.5740019"
+			              Location = "39.0280185,-94.5740019" --5
 			              Favorites = 2,5,9,3
                 },
                 { 
@@ -165,6 +165,6 @@ UserID = 1,
                     Favorites = null, 
                     PreferencesID = 10,
                     Tags = 26,29,9,30,28,7 
-                    HousingLocation = null
-			              Location = "39.0826589,-94.5824462"
+                    HousingLocation = 6
+			              Location = "39.0826589,-94.5824462" --6
 			               Favorites = 1,6,3
