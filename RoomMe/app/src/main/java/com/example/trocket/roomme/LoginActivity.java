@@ -11,8 +11,12 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,23 +38,23 @@ public class LoginActivity extends Activity {
 
         List<String> permissions = new ArrayList<String>();
         permissions.add("public_profile");
-        permissions.add("user_friends");
+        //permissions.add("user_friends");
         permissions.add("email");
         permissions.add("user_about_me");
-        permissions.add("user_actions.books");
-        permissions.add("user_actions.fitness");
-        permissions.add("user_actions.music");
-        permissions.add("user_actions.news");
-        permissions.add("user_actions.video");
-        permissions.add("user_birthday");
-        permissions.add("user_education_history");
-        permissions.add("user_events");
-        permissions.add("user_games_activity");
-        permissions.add("user_hometown");
-        permissions.add("user_likes");
-        permissions.add("user_location");
-        permissions.add("user_religion_politics");
-        permissions.add("user_work_history");
+        //permissions.add("user_actions.books");
+        //permissions.add("user_actions.fitness");
+        //permissions.add("user_actions.music");
+        //permissions.add("user_actions.news");
+        //permissions.add("user_actions.video");
+        //permissions.add("user_birthday");
+        //permissions.add("user_education_history");
+        //permissions.add("user_events");
+        //permissions.add("user_games_activity");
+        //permissions.add("user_hometown");
+        //permissions.add("user_likes");
+        //permissions.add("user_location");
+        //permissions.add("user_religion_politics");
+        //permissions.add("user_work_history");
         fbButton.setReadPermissions(permissions);
 
         fbButton.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +68,23 @@ public class LoginActivity extends Activity {
         fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+
+                                // Pass JSON object on to database
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,bio,email,gender");
+                request.setParameters(parameters);
+                request.executeAsync();
+
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 LoginActivity.this.startActivity(intent);
             }
