@@ -21,12 +21,14 @@
             android:id="@+id/ulv_user_name"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/ulv_user_pic"
+            android:textSize="20sp"
             android:layout_toEndOf="@+id/ulv_user_pic" />
 
         <TextView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/ulv_match_score"
+            android:textSize="30sp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/ulv_user_name"
             android:layout_alignParentRight="true"

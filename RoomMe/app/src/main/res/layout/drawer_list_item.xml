@@ -22,8 +22,8 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/dli_icon"
         android:paddingRight="10dp"
+        android:textSize="20sp"
         android:text="Folder name here."
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="#3ab" />
 
 </RelativeLayout>

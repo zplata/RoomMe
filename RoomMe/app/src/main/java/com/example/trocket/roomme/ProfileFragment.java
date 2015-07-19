@@ -1,6 +1,7 @@
 package com.example.trocket.roomme;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,10 @@ public class ProfileFragment extends Fragment {
 
     private com.beardedhen.androidbootstrap.BootstrapCircleThumbnail pic;
     private TextView name;
-    private TextView age;
+    private TextView email;
+    private TextView status;
+    private TextView housingPrice;
+    private TextView bio;
     private Button addToList;
     private Button fbMSG;
     private ArrayList<User> user;
@@ -32,14 +36,24 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Typeface face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ChaletNewYorkNineteenSixty.ttf");
+
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         pic = (com.beardedhen.androidbootstrap.BootstrapCircleThumbnail) rootView.findViewById(R.id.fp_user_picture);
         pic.setImage(R.drawable.isu);
 
         name = (TextView) rootView.findViewById(R.id.fp_name);
-        age = (TextView) rootView.findViewById(R.id.fp_age);
+        bio = (TextView) rootView.findViewById(R.id.fp_bio);
+        status = (TextView) rootView.findViewById(R.id.fp_status);
+        housingPrice = (TextView) rootView.findViewById(R.id.fp_housingPrice);
+        email = (TextView) rootView.findViewById(R.id.fp_email);
         addToList = (Button) rootView.findViewById(R.id.fp_addToList);
         fbMSG = (Button) rootView.findViewById(R.id.fp_fbMSG);
+
+        TextView staticHousing = (TextView) rootView.findViewById(R.id.staticHousingInfo);
+        TextView staticContact = (TextView) rootView.findViewById(R.id.staticContactInfo);
+
+        staticHousing.setTypeface(face); staticContact.setTypeface(face);
 
         Bundle args = getArguments();
         if(args != null) {
@@ -48,6 +62,7 @@ public class ProfileFragment extends Fragment {
 
         return rootView;
     }
+
 
    /* @Override
     public void onStart() {
@@ -60,8 +75,11 @@ public class ProfileFragment extends Fragment {
     }*/
 
     public void updateProfileView(User position) {
-        name.setText(position.getName());
-        age.setText(position.getAge() + "");
+        name.setText(position.getName() + ", " + position.getAge() + " (" + position.getGender() + ")");
+        bio.setText(position.getBio() + "");
+        status.setText(position.getStatus() + "");
+        housingPrice.setText("$" + position.getHousingPrice() + "/month");
+        email.setText(position.getEmail() + "");
     }
 
 
