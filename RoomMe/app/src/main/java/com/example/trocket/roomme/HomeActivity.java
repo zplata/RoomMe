@@ -51,11 +51,6 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
         setContentView(R.layout.activity_home);
         getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
 
-        //int test = yayJson.derp();
-        // Dummy data
-        for(int i = 0; i < 10; i++) {
-            userList.add(i, new User("Replace this", 21));
-        }
 
         testObjs = new TestObject[4];
         testObjs[0] = new TestObject(R.drawable.action_search, "Home");
