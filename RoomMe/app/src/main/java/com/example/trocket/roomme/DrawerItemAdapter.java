@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trocket.roomme.HomeActivity.TestObject;
@@ -36,13 +35,24 @@ public class DrawerItemAdapter extends ArrayAdapter<TestObject> {
         LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
         listItem = inflater.inflate(layoutResourceId, parent, false);
 
-        ImageView imageViewIcon = (ImageView) listItem.findViewById(R.id.dli_icon);
+        com.beardedhen.androidbootstrap.FontAwesomeText imageViewIcon = (com.beardedhen.androidbootstrap.FontAwesomeText)
+                listItem.findViewById(R.id.dli_icon);
         TextView textViewName = (TextView) listItem.findViewById(R.id.dli_action);
 
         TestObject folder = data[position];
 
-
-        imageViewIcon.setImageResource(folder.icon);
+        if(position == 0) {
+            imageViewIcon.setIcon("fa-home");
+        }
+        else if (position == 1) {
+            imageViewIcon.setIcon("fa-user");
+        }
+        else if (position == 2) {
+            imageViewIcon.setIcon("fa-edit");
+        }
+        else {
+            imageViewIcon.setIcon("fa-list-alt");
+        }
         textViewName.setText(folder.action);
 
         return listItem;
