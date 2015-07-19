@@ -16,7 +16,7 @@ namespace RoomMe.Webservice.Controllers
         private RoomMeWebserviceContext db = new RoomMeWebserviceContext();
 
         // GET api/minPreferences
-        public IQueryable<APIPreferences> Get()
+        public IEnumerable<APIPreferences> Get()
         {
             var models = db.Preferences;
 
@@ -27,7 +27,7 @@ namespace RoomMe.Webservice.Controllers
                 minModels.Add(model.ToAPIModel());
             }
 
-            return minModels as IQueryable<APIPreferences>;
+            return minModels;
         }
 
         // GET api/minPreferences/5

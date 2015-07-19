@@ -10,13 +10,13 @@ using System.Web.Http;
 
 namespace RoomMe.Webservice.Controllers
 {
-    public class minLocationController : ApiController
+    public class MinLocationController : ApiController
     {
 
         private RoomMeWebserviceContext db = new RoomMeWebserviceContext();
 
-        // GET api/minlocation
-        public IQueryable<APILocation> Get()
+        // GET api/Minlocation
+        public IEnumerable<APILocation> Get()
         {
             var models = db.Locations;
 
@@ -27,10 +27,10 @@ namespace RoomMe.Webservice.Controllers
                 minModels.Add(model.ToAPIModel());
             }
 
-            return minModels as IQueryable<APILocation>;
+            return minModels;
         }
 
-        // GET api/minlocation/5
+        // GET api/Minlocation/5
         public async Task<IHttpActionResult> Get(int id)
         {
             Location model = await db.Locations.FindAsync(id);

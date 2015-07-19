@@ -16,7 +16,7 @@ namespace RoomMe.Webservice.Controllers
         private RoomMeWebserviceContext db = new RoomMeWebserviceContext();
 
         // GET api/minUser
-        public IQueryable<APIUser> Get()
+        public IEnumerable<APIUser> Get()
         {
             var models = db.Users;
 
@@ -27,7 +27,7 @@ namespace RoomMe.Webservice.Controllers
                 minModels.Add(model.ToAPIModel());
             }
 
-            return minModels as IQueryable<APIUser>;
+            return minModels;
         }
 
         // GET api/minUser/5
