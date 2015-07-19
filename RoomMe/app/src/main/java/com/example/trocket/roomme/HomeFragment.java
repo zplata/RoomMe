@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    private ArrayList<User> userList = new ArrayList<User>();
+    public ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
+    getUsersAsync getUsers;
 
     private ListView list;
     //private JsonAccessor jsonGetter;
@@ -27,10 +28,9 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public HomeFragment() {
+    public HomeFragment( ) {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,10 +38,14 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Activity act = getActivity();
         listen = (OnUserSelectedListener) act;
+        //Execute a JsonGetter. It will call a response method when it finishes
+        //This is an example
+        getUsers = new getUsersAsync(this);
+        getUsers.execute(2);
 
-        userList.add(new User("Timmy", 1));
-        userList.add(new User("Toomy", 2));
-        userList.add(new User("Zach", 3));
+        //userList.add(new User("Timmy", 1));
+        //userList.add(new User("Toomy", 2));
+        //userList.add(new User("Zach", 3));
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);
         adapter = new UserArrayAdapter(getActivity(), userList);
@@ -60,5 +64,12 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-
+    void getUsersResponse( ArrayList<User> result)
+    {
+        if (result !=null) {
+            this.userList = result;
+            adapter.addAll(result);
+            adapter.notifyDataSetChanged();
+        }
+    }
 }

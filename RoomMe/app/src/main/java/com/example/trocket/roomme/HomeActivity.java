@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 
 
+
 public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUserSelectedListener {
 
     private ArrayList<User> userList = new ArrayList<User>();
@@ -40,6 +41,9 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
 
     private FragmentManager fragMan;
     private FragmentTransaction tx;
+    getUsersAsync getUsers;
+    getCareersAsync getCareers;
+    getLocationsAsync getLocations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +64,10 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
         testObjs[3] = new TestObject(R.drawable.action_search, "RoomMe List");
 
 
-        //Execute the JsonAccessor with an Api address
+        //Execute a JsonGetter. It will call a response method when it finishes
         //This is an example
-        //jsonGetter.execute("http://roomme.azurewebsites.net/Api/user");
+        getUsers = new getUsersAsync(this);
+        getUsers.execute(1);
 
 
         nav_drawer_layout = (DrawerLayout) findViewById(R.id.ah_drawer_layout);
@@ -110,6 +115,7 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
         switch (position) {
             case 0:
                 fragment = new HomeFragment();
+
                 break;
             case 1:
                 fragment = new ProfileFragment();
@@ -223,6 +229,22 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
     }
 
 
+    //Response methods are automatically called when the getAsync method finishes
+    //object passed in should be an arraylist of appropriate type
+    void getUsersResponse( ArrayList<User> result)
+    {
+        if (result !=null) {
+            System.out.println(result.get(0).getName());
+            userList = result;
+            selectItem(0);
+        }
+    }
+    void getLocationsResponse( ArrayList result)
+    {
+    }
+    void getCareersResponse( ArrayList result)
+    {
+    }
 }
 
 
