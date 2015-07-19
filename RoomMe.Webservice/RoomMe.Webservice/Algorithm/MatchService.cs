@@ -24,10 +24,6 @@ namespace RoomMe.Webservice.Algorithm
 
             var score = 0;
 
-            var matchingTags = GetMatchingTags(a.Tags, b.Preferences.Tags);
-
-            score += 100 * matchingTags.Count;
-
             score += GenerateMatchScoreForAge(a.Preferences.Age.Value, b.Age);
 
             score += GenerateMatchScoreForGender(a.Preferences.Gender.Value, b.Gender);
@@ -41,10 +37,13 @@ namespace RoomMe.Webservice.Algorithm
                 score += 1000;
             }
 
+            var matchingTags = GetMatchingTags(a.Tags, b.Preferences.Tags);
+
+            score += 100 * matchingTags.Count;
+
             var matchingLocation = GenerateHousingLocationScore(b.Housing, a.Preferences.Locations);
 
             return score;
-
 
         }
 
