@@ -21,11 +21,11 @@ import java.util.ArrayList;
 
 
 
-public class HomeActivity extends AppCompatActivity{
+
+public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUserSelectedListener {
 
     private ArrayList<User> userList = new ArrayList<User>();
     private UserArrayAdapter adapter;
-
 
     private ListView list;
 
@@ -49,7 +49,6 @@ public class HomeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
 
         //int test = yayJson.derp();
@@ -87,6 +86,16 @@ public class HomeActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public void onUserSelected(User position) {
+        ProfileFragment pro_frag = new ProfileFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(ProfileFragment.ARG_POSITION, position);
+        pro_frag.setArguments(args);
+
+        getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, pro_frag).commit();
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener{
 
         @Override
@@ -106,6 +115,7 @@ public class HomeActivity extends AppCompatActivity{
         switch (position) {
             case 0:
                 fragment = new HomeFragment();
+
                 break;
             case 1:
                 fragment = new ProfileFragment();
@@ -123,7 +133,6 @@ public class HomeActivity extends AppCompatActivity{
             fragMan = getFragmentManager();
             tx = fragMan.beginTransaction();
             tx.replace(R.id.ah_content_frame, fragment).addToBackStack("tag").commit();
-            Toast.makeText(getApplicationContext(), "THIS MOOOOOOOO", Toast.LENGTH_LONG).show();
 
             nav_list.setItemChecked(position, true);
             nav_list.setSelection(position);
@@ -219,22 +228,23 @@ public class HomeActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+
     //Response methods are automatically called when the getAsync method finishes
     //object passed in should be an arraylist of appropriate type
     void getUsersResponse( ArrayList<User> result)
     {
-        System.out.println(result.get(0).getName());
+        if (result !=null) {
+            System.out.println(result.get(0).getName());
+            userList = result;
+            selectItem(0);
+        }
     }
-
     void getLocationsResponse( ArrayList result)
     {
     }
-
     void getCareersResponse( ArrayList result)
     {
     }
-
-
 }
 
 

@@ -59,5 +59,4 @@ public class JsonAccessor {
         return builder.toString();
 
     }
-
 }
