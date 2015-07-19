@@ -29,24 +29,32 @@ namespace RoomMe.Webservice.Controllers
 
         [Route("register")]
         // POST: api/Account
-        public async Task<IHttpActionResult> Register([FromBody] string email, [FromBody] string name, [FromBody] int age, [FromBody] string bio, [FromBody] int gender, [FromBody] string phone, [FromBody] string authToken)
+        public async Task<HttpResponseMessage> Register([FromUri] string email, [FromUri] string name, [FromUri] int age, [FromUri] int gender, [FromUri] string phone, [FromUri] string authToken)
         {
             User newUser = new User()
             {
                 Email = email,
                 Name = name,
                 Age = age,
-                Bio = bio,
+                Bio = "",
                 Gender = (Gender) gender,
                 PhoneNumber = phone,
                 Status = Status.NeedsHousingAndRoommate,
                 AuthToken = authToken
             };
 
-            db.Users.Add(newUser);
-            await db.SaveChangesAsync();
+            var context = new RoomMeWebserviceContext();
 
-            return CreatedAtRoute("DefaultApi", new { id = newUser.UserID }, newUser.ToAPIModel());
+            try
+            {
+                context.Users.Add(newUser);
+                await context.SaveChangesAsync();
+                return Request.CreateResponse(HttpStatusCode.OK, newUser.UserID);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, false);
+            }
 
         }
 
