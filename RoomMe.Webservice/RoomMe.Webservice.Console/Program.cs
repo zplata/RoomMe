@@ -21,9 +21,49 @@ namespace RoomMe.Webservice.Console
         static void SeedData()
         {
 
+            
+
             var db = new RoomMeWebserviceContext();
 
             UserDAO uDAO = new UserDAO(db);
+
+
+            var t1 = new Tag { Name = "Politics" };
+            var t2 = new Tag { Name = "Theater" };
+            var t3 = new Tag { Name = "Call of Duty" };
+            var t4 = new Tag { Name = "Abolition" };
+            var t5 = new Tag { Name = "Traveling" };
+            var t6 = new Tag { Name = "Democratic Party" };
+            var t7 = new Tag { Name = "Swag" };
+            var t8 = new Tag { Name = "Space" };
+            var t9 = new Tag { Name = "Dogs" };
+            var t10 = new Tag { Name = "Cats" };
+            var t11 = new Tag { Name = "Lifting" };
+            var t12 = new Tag { Name = "Crushing Your Enemies" };
+            var t13 = new Tag { Name = "John Connor" };
+            var t14 = new Tag { Name = "Singing" };
+            var t15 = new Tag { Name = "Dancing" };
+            var t16 = new Tag { Name = "Crime Fighting" };
+            var t17 = new Tag { Name = "Soap Opera" };
+            var t18 = new Tag { Name = "Bats" };
+            var t19 = new Tag { Name = "Wayne Industries" };
+            var t20 = new Tag { Name = "Online Piracy" };
+            var t21 = new Tag { Name = "Sailing" };
+            var t22 = new Tag { Name = "Rum" };
+            var t23 = new Tag { Name = "Boxing" };
+            var t24 = new Tag { Name = "Ears" };
+            var t25 = new Tag { Name = "Pigeons" };
+            var t26 = new Tag { Name = "Winter" };
+            var t27 = new Tag { Name = "Game of Thrones" };
+            var t28 = new Tag { Name = "Jousting" };
+            var t29 = new Tag { Name = "Defending M'lady's Honor" };
+            var t30 = new Tag { Name = "Republican Party" };
+            var t31 = new Tag { Name = "Lasers" };
+            var t32 = new Tag { Name = "Donuts" };
+
+            var tags = new List<Tag> { t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32 };
+
+            db.Tags.AddRange(tags);
 
             var p1 = new Preferences
             {
@@ -174,7 +214,7 @@ namespace RoomMe.Webservice.Console
             db.Careers.AddRange(careers);
 
 
-
+            
 
             var u1 = new User
             {
