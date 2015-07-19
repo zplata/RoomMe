@@ -15,7 +15,7 @@ namespace RoomMe.Webservice.Models.API
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public Status Status { get; set; }
-        public double HousingPrice { get; set; }
+        public double? HousingPrice { get; set; }
         public string Bio { get; set; }
         public List<int> FavoritedUserIDs { get; set; }
 

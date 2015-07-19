@@ -54,6 +54,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -129,6 +130,8 @@
     <Folder Include="DataAccess\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\MatchProfile.cs" />
+    <Compile Include="Algorithm\MatchService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -199,9 +202,9 @@
     <Compile Include="Migrations\201507180403159_v6.Designer.cs">
       <DependentUpon>201507180403159_v6.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201507180808120_v7_Auth.cs" />
-    <Compile Include="Migrations\201507180808120_v7_Auth.Designer.cs">
-      <DependentUpon>201507180808120_v7_Auth.cs</DependentUpon>
+    <Compile Include="Migrations\201507190445203_v7.cs" />
+    <Compile Include="Migrations\201507190445203_v7.Designer.cs">
+      <DependentUpon>201507190445203_v7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RoomMeWebserviceContext.cs" />
@@ -290,8 +293,8 @@
     <EmbeddedResource Include="Migrations\201507180403159_v6.resx">
       <DependentUpon>201507180403159_v6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507180808120_v7_Auth.resx">
-      <DependentUpon>201507180808120_v7_Auth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507190445203_v7.resx">
+      <DependentUpon>201507190445203_v7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
