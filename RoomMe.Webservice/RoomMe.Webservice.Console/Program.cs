@@ -21,12 +21,91 @@ namespace RoomMe.Webservice.Console
         static void SeedData()
         {
 
-            
-
             var db = new RoomMeWebserviceContext();
 
             UserDAO uDAO = new UserDAO(db);
 
+            var l1 = new Location
+            {
+                Latitude = 39.0354776,
+                Longitude = -94.5829717
+            };
+
+            var l2 = new Location
+            {
+                Latitude = 39.1024547,
+                Longitude = -94.5990768
+            };
+
+            var l3 = new Location
+            {
+                Latitude = 39.0354776,
+                Longitude = -94.5829717
+            };
+
+            var l4 = new Location
+            {
+                Latitude = 39.1024547,
+                Longitude = -94.5990768
+            };
+
+            var l5 = new Location
+            {
+                Latitude = 39.0280185,
+                Longitude = -94.5740019
+            };
+
+            var l6 = new Location
+            {
+                Latitude = 39.0826589,
+                Longitude = -94.5824462
+            };
+
+            var locations = new List<Location> { l1, l2, l3, l4, l5, l6 };
+
+            var h1 = new Housing
+            {
+                Name = "Millenium Falcon",
+                Address = "10236 Marion Park Drive, Kansas City, MO. 64137",
+                LocationID = l1.LocationID
+            };
+
+            var h2 = new Housing
+            {
+                Name = "Beyonce's Crib",
+                Address = "Roanoke Rd Kansas City, MO. 64111",
+                LocationID = l2.LocationID
+            };
+
+            var h3 = new Housing
+            {
+                Name = "Wayne Manor",
+                Address = "5050 Oak Street, Kansas City, MO. 64112",
+                LocationID = l3.LocationID
+            };
+
+            var h4 = new Housing
+            {
+                Name = "Wayne Manor",
+                Address = "1217 Union Avenue, Kansas City, MO. 64101",
+                LocationID = l4.LocationID
+            };
+
+            var h5 = new Housing
+            {
+                Name = "Queen Anne's Revenge",
+                Address = "5424 Troost Avenue, Kansas City, MO. 64110",
+                LocationID = l5.LocationID
+            };
+
+            var h6 = new Housing
+            {
+                Name = "Winterfell",
+                Address = "2450 Grand Boulevard, Kansas City, MO. 64108",
+                LocationID = l6.LocationID
+            };
+
+            var housigns = new List<Housing> { h1, h2, h3, h4, h5, h6 };
 
             var t1 = new Tag { Name = "Politics" };
             var t2 = new Tag { Name = "Theater" };
@@ -212,9 +291,6 @@ namespace RoomMe.Webservice.Console
             var careers = new List<Career> { c1, c2, c3, c4, c5, c6, c7, c8, c9, c10 };
 
             db.Careers.AddRange(careers);
-
-
-            
 
             var u1 = new User
             {
