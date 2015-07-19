@@ -18,9 +18,12 @@ namespace RoomMe.Webservice.Controllers
         private RoomMeWebserviceContext db = new RoomMeWebserviceContext();
 
         // GET api/User
-        public IQueryable<User> GetUsers()
+        public IEnumerable<User> GetUsers()
         {
-            return db.Users;
+
+            var result = db.Users.ToList();
+
+            return result;
         }
 
         // GET api/User/5

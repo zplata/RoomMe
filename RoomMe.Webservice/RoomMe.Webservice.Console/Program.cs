@@ -4,6 +4,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Generic;
+using RoomMe.Webservice.DataAccess.DAO;
 
 
 namespace RoomMe.Webservice.Console
@@ -12,8 +14,17 @@ namespace RoomMe.Webservice.Console
     {
         static void Main(string[] args)
         {
-            RunAsync().Wait();
+            SeedData();
             System.Console.ReadLine();
+        }
+
+        static void SeedData()
+        {
+            var db = new RoomMeWebserviceContext();
+            UserDAO uDAO = new UserDAO(db);
+
+            var result =  uDAO.GetUserbyID(1);
+
         }
 
         static async Task RunAsync()
