@@ -38,23 +38,8 @@ public class LoginActivity extends Activity {
 
         List<String> permissions = new ArrayList<String>();
         permissions.add("public_profile");
-        //permissions.add("user_friends");
         permissions.add("email");
         permissions.add("user_about_me");
-        //permissions.add("user_actions.books");
-        //permissions.add("user_actions.fitness");
-        //permissions.add("user_actions.music");
-        //permissions.add("user_actions.news");
-        //permissions.add("user_actions.video");
-        //permissions.add("user_birthday");
-        //permissions.add("user_education_history");
-        //permissions.add("user_events");
-        //permissions.add("user_games_activity");
-        //permissions.add("user_hometown");
-        //permissions.add("user_likes");
-        //permissions.add("user_location");
-        //permissions.add("user_religion_politics");
-        //permissions.add("user_work_history");
         fbButton.setReadPermissions(permissions);
 
         fbButton.setOnClickListener(new View.OnClickListener() {
