@@ -24,7 +24,7 @@ namespace RoomMe.Webservice.Models
         public List<int> FavoritedUserIDs {get; set;}
         public virtual List<Tag> Tags { get; set; }
         public virtual Preferences Preferences { get; set; } // hmmm maybe a list of preferences using enum/value structure...?
-        public double HousingPrice { get; set; }
+        public double? HousingPrice { get; set; }
 
         // todo: matches and suggestions. Suggestions shouldn't be stored with the user because it stores state and could be stale.
 
