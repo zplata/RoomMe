@@ -70,9 +70,9 @@ public class InitialProfileEdit extends ActionBarActivity {
                     obj.put("phoneNumber", phoneNum.getText());
                     obj.put("status", statusOfficial);
                     obj.put("age", age.getText());
-                    postInitialUser = new postUsersAsync();
+                    postInitialUser = new postUsersAsync(InitialProfileEdit.this);
                     // Note: THIS IS WHERE YOU POST JSON OBJECT TO PARSER
-                    //postInitialUser.execute(obj);
+                    postInitialUser.execute(obj);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -120,11 +120,12 @@ public class InitialProfileEdit extends ActionBarActivity {
 
     /**
      * This is where we store the user_id of the user of the app
-     * @param user_id
+     *
      */
-    public void onUserIdReturned(int user_id) {
+    public void onUserIdReturned(User user) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
+         int user_id = user.getUserID();
         editor.putInt("user_id", user_id);
         editor.commit();
 
