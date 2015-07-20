@@ -19,3 +19,51 @@ Because all business logic is abstracted into the webservice, users should be ab
 
 ## Data Model
 
+### Models
+Our application uses the following models:
+
+* User - encapsulates data about the user including name, gender, contact info, employment data, current housing, favorited users, etc.
+* Preferences - encapsulates data about the user's preferences including gender, age, price range, tags, locations, and housings.
+* Tag - users can characterize themselves with a collection of tags that represent their interests.
+* Housing - represents a residential building. Contains the building's name, address, and geographic location.
+* Location - represents a location on earth with latitude and longitude.
+* Career - contains data about a user's job. Contains the name of the company and the job title.
+
+### Relations
+
+#### User
+
+* User may have a Career object
+  * If the user has current employment, it will be represented using the career object
+* User may have a Housing object
+  * If the user currently has housing, it will be represented using the housing object
+* User may have a list of Tags
+  * The user may describe itself with a list of tags.
+* User may have a Preferences object
+  * The user has a set of preferences. It will only be null if the user has not submitted a set of preferences.
+
+#### Preferences
+
+* Preferences may have a list of tags
+  * Tags included in this list represent what tags the user would like to see in potential roommates. They are not necessarily equivalent to the user's own tags. For example, I may not tag myself with Music, but I may include the Music tag in my preferences because I want a roommate who can serenade me every night. 
+* Preferences may have a list of locations
+  * Locations included in this list denote where the user prefers to live in terms of geographic coordinates. This can be used to denote preferences in general locations rather than by specific buildings.
+* Preferences may have a list of Housings
+  * Housing object included in this list denote where the user prefers to live in terms of specific buildings. 
+
+#### Tag
+
+* Tags have Users
+  * This many-to-many relationship allows the application to retrieve a list of users who have identified themselves with a particular tag. This may come in handy when performing complex queries.
+
+#### Housing
+
+* List of Users
+  * The Residents property of a Housing object is a list of users who live in the building.
+* Location
+  * Denotes the geographic location of the building
+
+#### Career
+
+* List of Users
+  * Denotes the users who have this career in common.
