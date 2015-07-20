@@ -3,6 +3,9 @@ package com.example.trocket.roomme;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.content.Context;
 
 /**
  * Created by Billy on 7/17/15.
@@ -35,8 +38,10 @@ public class getUsersAsync extends AsyncTask<Integer, Void, ArrayList<User>> {
             {
                 selected = 999;
             }
+
+            int id  = HoldMyUserObject.id;
             //urls[0] is the first argument given, in this case it is the URL to be accessed
-            String derp = JsonAccessor.getJSON("http://roomme.azurewebsites.net/Api/minuser");
+            String derp = JsonAccessor.getJSON("http://roomme.azurewebsites.net/api/minuser/compatible?userID=" + id + "");
 
             ArrayList<User> userList = JsonParser.parseJSONForUsers(derp);
             //System.out.println(derp);

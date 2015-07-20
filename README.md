@@ -1,5 +1,7 @@
 # RoomMe
-Android application to facilitate roommate-finding within internal networks
+RoomMe is a mobile application that allows for users to seek out potential roommates in a mutual location. Users can view a feed of other users either looking for people to fill vacancy in their own property, or looking for people who they want to find housing with. Either way, a user can view a complete profile of other users on the feed and get contact information, as well as save potential roommates to a favorited list of users, the RoomMe List. One's own profile is editable and viewable accordingly. Users can also view a match score based on their compatibility to a specific user. A complex algorithm computes the score based on several factors of the users preferences. 
+
+To get started, a user must login with their Facebook credentials and fill out a short preferences form to be registered. Go forth, and find your RoomMe!
 
 Check out our issue board [here!](https://waffle.io/zplata/RoomMe)
 
@@ -67,3 +69,9 @@ Our application uses the following models:
 
 * List of Users
   * Denotes the users who have this career in common.
+
+## API
+
+All of our api exists on `roomme.azurewebsites.net/api`. Check out the url for (incomplete) documentation on all the available enpoints. 
+
+To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints.

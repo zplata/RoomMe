@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace RoomMe.Webservice.Controllers
 {
+    [RoutePrefix("api/mintag")]
     public class MinTagController : ApiController
     {
 
@@ -41,6 +42,47 @@ namespace RoomMe.Webservice.Controllers
             }
 
             return Ok(model.ToAPIModel());
+        }
+
+        [Route("byname")]
+        public async Task<HttpResponseMessage> GetByName([FromUri] string name)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Tags.Where(x => x.Name == name).ToList();
+
+            var apiresults = new List<APITag>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
+
+        [Route("byuser")]
+        public async Task<HttpResponseMessage> GetByUser([FromUri] string userID)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var user = context.Users.Find(userID);
+
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, false);
+            }
+
+            var results = context.Tags.Where(x => x.Users.Contains(user)).ToList();
+
+            var apiresults = new List<APITag>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
         }
     }
 }
