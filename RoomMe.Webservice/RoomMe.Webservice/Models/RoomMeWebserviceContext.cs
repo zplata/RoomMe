@@ -23,7 +23,7 @@ namespace RoomMe.Webservice.Models
 
         public System.Data.Entity.DbSet<RoomMe.Webservice.Models.Career> Careers { get; set; }
 
-        public System.Data.Entity.DbSet<RoomMe.Webservice.Models.Preferences> Preferences { get; set; }
+        public System.Data.Entity.DbSet<RoomMe.Webservice.Models.Preferences> Housing { get; set; }
 
         public System.Data.Entity.DbSet<RoomMe.Webservice.Models.Location> Locations { get; set; }
 

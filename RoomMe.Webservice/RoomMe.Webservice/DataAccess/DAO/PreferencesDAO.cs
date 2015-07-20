@@ -18,7 +18,7 @@ namespace RoomMe.Webservice.DataAccess.DAO
         {
             using(var db = new RoomMeWebserviceContext())
             {
-                return db.Preferences.Find(prefID);
+                return db.Housing.Find(prefID);
             }
         }
 

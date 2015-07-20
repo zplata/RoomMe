@@ -42,7 +42,7 @@ namespace RoomMe.Webservice.DataAccess.DAO
         {
             using(var db = new RoomMeWebserviceContext())
             {
-                var pref = db.Preferences.Find(preferenceID);
+                var pref = db.Housing.Find(preferenceID);
                 if(pref != null)
                 {
                     return pref.Housings.ToList();
