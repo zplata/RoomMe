@@ -26,17 +26,28 @@ namespace RoomMe.Webservice.Algorithm
                 userB.Preferences = new Preferences();
             }
 
+            var score = 0;
+
             if((statusA == Status.HasVacancy) && (statusB == Status.NeedsHousingAndRoommate))
             {
-                return GenerateMatchScoreOfFillingVacancy(userA, userB);
+                score = GenerateMatchScoreOfFillingVacancy(userA, userB);
             }
             else if ( (statusA == Status.NeedsHousingAndRoommate) && (statusB == Status.HasVacancy) )
             {
-                return GenerateMatchScoreOfMovingIn(userA, userB);
+                score = GenerateMatchScoreOfMovingIn(userA, userB);
             }
             else if ( (statusA == Status.NeedsRoommateOnly) && (statusB == Status.NeedsRoommateOnly) )
             {
-                return GenerateMatchScoreOfPreferences(userA, userB);
+                score = GenerateMatchScoreOfPreferences(userA, userB);
+            }
+
+            if(score < 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return score/100;
             }
 
             return 0;
