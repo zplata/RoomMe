@@ -39,11 +39,9 @@ public class UserArrayAdapter extends ArrayAdapter<User> {
         ImageView user_pic_view = (ImageView) convertView.findViewById(R.id.ulv_user_pic);
 
         user_name_view.setText(user.getName());
-        user_name_view.setTypeface(null, Typeface.BOLD);
         match_score_view.setText(user.getMatchScore() + "");
         match_score_view.setTextColor(Color.parseColor("#fe9201"));
         match_score_view.setTypeface(null, Typeface.BOLD);
-        user_pic_view.setImageResource(R.drawable.ic_launcher);
 
         return convertView;
     }

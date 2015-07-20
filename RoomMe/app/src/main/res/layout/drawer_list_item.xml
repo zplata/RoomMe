@@ -24,6 +24,6 @@
         android:paddingRight="10dp"
         android:textSize="20sp"
         android:text="Folder name here."
-        android:textColor="#3ab" />
+        android:textColor="#FECF01" />
 
 </RelativeLayout>

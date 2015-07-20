@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/fh_users_list"
             android:layout_centerHorizontal="true"
+            android:background="#FFFFFF"
             android:paddingLeft="3sp"
             android:paddingRight="3sp"
             android:paddingTop="3sp"
