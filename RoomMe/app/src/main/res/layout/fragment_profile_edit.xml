@@ -16,15 +16,6 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit Profile"
-                android:id="@+id/fpe_header"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="30dp" />
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -32,6 +23,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Phone Number:"
                 android:id="@+id/fpe_phone_number"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:layout_alignBottom="@+id/fpe_edit_phone"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -42,6 +35,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Email:"
                 android:id="@+id/fpe_email"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:layout_below="@+id/fpe_phone_number"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -58,8 +53,7 @@
                 android:enabled="true"
                 android:hint="(XXX)-XXX-XXXX"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/fpe_header" />
+                android:layout_alignParentEnd="true" />
 
 
             <EditText
@@ -71,9 +65,12 @@
                 android:editable="true"
                 android:enabled="true"
                 android:hint="derp@herp.com"
+                android:paddingLeft="10sp"
                 android:layout_above="@+id/fpe_status"
-                android:layout_alignLeft="@+id/fpe_edit_phone"
-                android:layout_alignStart="@+id/fpe_edit_phone" />
+                android:layout_alignRight="@+id/fpe_edit_phone"
+                android:layout_alignEnd="@+id/fpe_edit_phone"
+                android:layout_toRightOf="@+id/fpe_email"
+                android:layout_toEndOf="@+id/fpe_email" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,6 +78,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Status:"
                 android:id="@+id/fpe_status"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:layout_below="@+id/fpe_email"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp" />
@@ -98,6 +97,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Ideal Location:"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:id="@+id/fpe_location"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/fpe_edit_status"
@@ -122,6 +123,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Career: "
                 android:id="@+id/fpe_career"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/fpe_edit_location"
                 android:layout_centerHorizontal="true"/>
@@ -145,6 +148,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Bio:"
                 android:id="@+id/fpe_bio"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:layout_below="@+id/fpe_edit_career"
                 android:layout_centerHorizontal="true" />
 

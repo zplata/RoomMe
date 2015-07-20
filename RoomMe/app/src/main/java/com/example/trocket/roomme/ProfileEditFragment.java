@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
 public class ProfileEditFragment extends Fragment {
@@ -40,8 +39,8 @@ public class ProfileEditFragment extends Fragment {
                 R.array.status_options, android.R.layout.simple_spinner_item);
         status.setAdapter(staticAdapter);*/
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                R.layout.spinner_item, items);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         status.setAdapter(adapter);
         status.setSelection(0);
         status.setOnItemSelectedListener(new SpinnerItemSelected());
@@ -54,7 +53,6 @@ public class ProfileEditFragment extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             statusPosition = position;
-            Toast.makeText(getActivity().getApplicationContext(), items[position], Toast.LENGTH_LONG).show();
         }
 
         @Override
