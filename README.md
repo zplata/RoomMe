@@ -74,9 +74,18 @@ Our application uses the following models:
 
 All of our api exists on `roomme.azurewebsites.net/api`. Check out the url for (incomplete) documentation on all the available enpoints. 
 
-To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints.
+To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints. Finally, to associate objects with each other, checkout the `api/{model}/associate{object}` endpoints. 
 
-Moral of the story is, you can build your own app around our service!
+POST to api/account/register to create a new account,
+
+POST to api/preferences to register new preferences,
+
+POST to api/user/associatepreferences to link the preferences to your new account
+
+GET at api/minuser/compatible to checkout out your compatibility with potential roommates!
+
+
+Moral of the story is, we've exposed just enough API endpoints so that you can build your own app around our service!
 
 ## Algorithm
 
@@ -89,4 +98,4 @@ Our super roommate algorithm takes into consideration several factors before spi
 * location preferrences and location proximity
 * housing preferrences and location proximity
   
-
+The range of scores you can get starts at 0 but has no upper limit. As a rule of thumb, consider a score of 50 to be a match made in heaven and 0 to be absolutely incompatible.
