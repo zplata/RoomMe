@@ -20,14 +20,14 @@ namespace RoomMe.Webservice.Controllers
         // GET api/Preferences
         public IQueryable<Preferences> GetPreferences()
         {
-            return db.Housing;
+            return db.Preferences;
         }
 
         // GET api/Preferences/5
         [ResponseType(typeof(Preferences))]
         public async Task<IHttpActionResult> GetPreferences(int id)
         {
-            Preferences preferences = await db.Housing.FindAsync(id);
+            Preferences preferences = await db.Preferences.FindAsync(id);
             if (preferences == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace RoomMe.Webservice.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Housing.Add(preferences);
+            db.Preferences.Add(preferences);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = preferences.PreferencesID }, preferences);
@@ -89,13 +89,13 @@ namespace RoomMe.Webservice.Controllers
         [ResponseType(typeof(Preferences))]
         public async Task<IHttpActionResult> DeletePreferences(int id)
         {
-            Preferences preferences = await db.Housing.FindAsync(id);
+            Preferences preferences = await db.Preferences.FindAsync(id);
             if (preferences == null)
             {
                 return NotFound();
             }
 
-            db.Housing.Remove(preferences);
+            db.Preferences.Remove(preferences);
             await db.SaveChangesAsync();
 
             return Ok(preferences);
@@ -105,7 +105,7 @@ namespace RoomMe.Webservice.Controllers
         {
             var context = new RoomMeWebserviceContext();
             var tag = context.Tags.Find(tagID);
-            var preferences = context.Housing.Find(preferencesID);
+            var preferences = context.Preferences.Find(preferencesID);
 
             if ((tag == null) || (preferences == null))
             {
@@ -113,7 +113,7 @@ namespace RoomMe.Webservice.Controllers
             }
             else
             {
-                context.Housing.Attach(preferences);
+                context.Preferences.Attach(preferences);
                 context.Tags.Attach(tag);
 
                 preferences.Tags.Add(tag);
@@ -137,7 +137,7 @@ namespace RoomMe.Webservice.Controllers
         {
             var context = new RoomMeWebserviceContext();
             var location = context.Locations.Find(locationID);
-            var preferences = context.Housing.Find(preferencesID);
+            var preferences = context.Preferences.Find(preferencesID);
 
             if ((location == null) || (preferences == null))
             {
@@ -145,7 +145,7 @@ namespace RoomMe.Webservice.Controllers
             }
             else
             {
-                context.Housing.Attach(preferences);
+                context.Preferences.Attach(preferences);
                 context.Locations.Attach(location);
 
                 preferences.Locations.Add(location);
@@ -169,7 +169,7 @@ namespace RoomMe.Webservice.Controllers
         {
             var context = new RoomMeWebserviceContext();
             var housing = context.Housings.Find(housingID);
-            var preferences = context.Housing.Find(preferencesID);
+            var preferences = context.Preferences.Find(preferencesID);
 
             if ((housing == null) || (preferences == null))
             {
@@ -177,7 +177,7 @@ namespace RoomMe.Webservice.Controllers
             }
             else
             {
-                context.Housing.Attach(preferences);
+                context.Preferences.Attach(preferences);
                 context.Housings.Attach(housing);
 
                 preferences.Housings.Add(housing);
@@ -208,7 +208,7 @@ namespace RoomMe.Webservice.Controllers
 
         private bool PreferencesExists(int id)
         {
-            return db.Housing.Count(e => e.PreferencesID == id) > 0;
+            return db.Preferences.Count(e => e.PreferencesID == id) > 0;
         }
     }
 }
