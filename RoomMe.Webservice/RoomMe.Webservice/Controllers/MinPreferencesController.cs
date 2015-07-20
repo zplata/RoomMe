@@ -18,7 +18,7 @@ namespace RoomMe.Webservice.Controllers
         // GET api/minPreferences
         public IEnumerable<APIPreferences> Get()
         {
-            var models = db.Housing;
+            var models = db.Preferences;
 
             var minModels = new List<APIPreferences>();
 
@@ -33,13 +33,30 @@ namespace RoomMe.Webservice.Controllers
         // GET api/minPreferences/5
         public async Task<IHttpActionResult> Get(int id)
         {
-            Preferences model = await db.Housing.FindAsync(id);
+            Preferences model = await db.Preferences.FindAsync(id);
             if (model == null)
             {
                 return NotFound();
             }
 
             return Ok(model.ToAPIModel());
+        }
+
+        [Route("byuser")]
+        public async Task<HttpResponseMessage> GetByUser([FromUri] string userID)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var user = context.Users.Find(userID);
+
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, false);
+            }
+
+            var results = user.Preferences;
+
+            return Request.CreateResponse(HttpStatusCode.OK, results.ToAPIModel());
         }
     }
 }

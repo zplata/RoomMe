@@ -76,5 +76,29 @@ namespace RoomMe.Webservice.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, apiresults);
         }
+
+        [Route("byuser")]
+        public async Task<HttpResponseMessage> GetByUser([FromUri] string userID)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var user = context.Users.Find(userID);
+
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, false);
+            }
+
+            var results = context.Housings.Where(x => x.Residents.Contains(user)).ToList();
+
+            var apiresults = new List<APIHousing>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
     }
 }
