@@ -2,9 +2,7 @@ package com.example.trocket.roomme;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,9 +63,9 @@ public class LoginActivity extends Activity {
                             public void onCompleted(
                                     JSONObject object,
                                     GraphResponse response) {
-                                post = new postUsersAsync();
-                                post.execute(object);
-                                // Pass JSON object on to database
+                                Intent i = new Intent(LoginActivity.this, InitialProfileEdit.class);
+                                i.putExtra("JsonObject", object.toString());
+                                startActivity(i);
                             }
                         });
                 Bundle parameters = new Bundle();
@@ -124,15 +122,5 @@ public class LoginActivity extends Activity {
         return accessToken != null;
     }
 
-    /**
-     * This is where we store the user_id of the user of the app
-     * @param user_id
-     */
-    public void onUserIdReturned(int user_id) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("user_id", user_id);
-        editor.commit();
-    }
 
 }
