@@ -117,6 +117,9 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
                 break;
             case 1:
                 fragment = new ProfileFragment();
+                Bundle args = new Bundle();
+                args.putParcelable(ProfileFragment.ARG_POSITION, HoldMyUserObject.my_user_object);
+                fragment.setArguments(args);
                 break;
             case 2:
                 fragment = new ProfileEditFragment();
@@ -127,6 +130,7 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
             default:
                 break;
         }
+
         if (fragment != null) {
             fragMan = getFragmentManager();
             tx = fragMan.beginTransaction();
