@@ -104,6 +104,103 @@ namespace RoomMe.Webservice.Controllers
             return Ok(user);
         }
 
+        public async Task<HttpResponseMessage> AssociateCareer([FromUri] int careerID, [FromUri] int userID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var career = context.Careers.Find(careerID);
+            var user = context.Users.Find(userID);
+
+            if((career == null) || (user == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find user or career");
+            }
+            else
+            {
+                context.Users.Attach(user);
+                context.Careers.Attach(career);
+
+                user.Job = career;
+
+                context.Entry(user).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch(Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+                
+            }
+
+        }
+
+        public async Task<HttpResponseMessage> AssociateHousing([FromUri] int housingID, [FromUri] int userID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var housing = context.Housings.Find(housingID);
+            var user = context.Users.Find(userID);
+
+            if ((housing == null) || (user == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find user or housing");
+            }
+            else
+            {
+                context.Users.Attach(user);
+                context.Housings.Attach(housing);
+
+                user.Housing = housing;
+
+                context.Entry(user).State = EntityState.Modified;
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+
+            }
+        }
+
+        public async Task<HttpResponseMessage> AssociateTag([FromUri] int tagID, [FromUri] int userID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var tag = context.Tags.Find(tagID);
+            var user = context.Users.Find(userID);
+
+            if ((tag == null) || (user == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find user or tag");
+            }
+            else
+            {
+                context.Users.Attach(user);
+                context.Tags.Attach(tag);
+
+                user.Tags.Add(tag);
+
+                context.Entry(user).State = EntityState.Modified;
+                context.Entry(tag).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
