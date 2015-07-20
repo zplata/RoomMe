@@ -238,7 +238,7 @@ namespace RoomMe.Webservice.Migrations
             };
 
             var prefs = new List<Preferences> { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 };
-            context.Preferences.AddOrUpdate( x => x.PreferencesID, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+            context.Housing.AddOrUpdate( x => x.PreferencesID, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
 
             var c1 = new Career
             {

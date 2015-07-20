@@ -101,6 +101,38 @@ namespace RoomMe.Webservice.Controllers
             return Ok(housing);
         }
 
+        public async Task<HttpResponseMessage> AssociateLocation(int locationID, int housingID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var location = context.Locations.Find(locationID);
+            var housing = context.Housings.Find(housingID);
+
+            if ((location == null) || (housing == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find preference or tag");
+            }
+            else
+            {
+                context.Housings.Attach(housing);
+                context.Locations.Attach(location);
+
+                housing.Location = location;
+
+                context.Entry(housing).State = EntityState.Modified;
+                context.Entry(location).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

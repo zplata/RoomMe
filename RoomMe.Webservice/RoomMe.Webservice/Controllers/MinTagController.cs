@@ -1,4 +1,5 @@
-﻿using RoomMe.Webservice.Models;
+﻿using Newtonsoft.Json.Linq;
+using RoomMe.Webservice.Models;
 using RoomMe.Webservice.Models.API;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,11 @@ namespace RoomMe.Webservice.Controllers
             }
 
             return Ok(model.ToAPIModel());
+        }
+
+        public async Task<HttpResponseMessage> SaveTag([FromBody])
+        {
+
         }
     }
 }
