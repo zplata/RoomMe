@@ -12,20 +12,7 @@ namespace RoomMe.Webservice.Controllers
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
-
         private RoomMeWebserviceContext db = new RoomMeWebserviceContext();
-
-        // GET: api/Account
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Account/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         [Route("register")]
         // POST: api/Account

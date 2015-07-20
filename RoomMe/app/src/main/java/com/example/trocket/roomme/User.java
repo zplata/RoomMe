@@ -43,11 +43,31 @@ public class User implements Parcelable {
 
     public int getUserID() { return userID; }
     public String getName() { return fullName; }
-    public int getGender() { return gender; }
+    public String getGender() {
+        if(gender == 0) {
+            return "M";
+        }
+        else {
+            return "F";
+        }
+    }
     public int getAge() { return age; }
     public String getPhoneNumber() { return phoneNumber; }
     public String getEmail() { return email; }
-    public int getStatus() { return status; }
+    public String getStatus() {
+        if(status == 0) {
+            return "Has vacancy";
+        }
+        else if (status == 1) {
+            return "Needs housing and roommate";
+        }
+        else if (status == 2) {
+            return "Only need roommate(s)";
+        }
+        else {
+            return "Inactive";
+        }
+    }
     public double getHousingPrice() { return housingPrice; }
     public String getBio() { return bio; }
     public List<Integer> getFavoritedUserIDS() { return favoritedUserIDS; }

@@ -2,14 +2,19 @@ package com.example.trocket.roomme;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import android.widget.TextView;
+
 import java.util.List;
 import java.util.ArrayList;
+
 
 import java.util.ArrayList;
 
@@ -22,6 +27,7 @@ public class HomeFragment extends Fragment {
     postUsersAsync postUser;
 
     private ListView list;
+    private TextView banner;
     //private JsonAccessor jsonGetter;
 
     OnUserSelectedListener listen;
@@ -38,6 +44,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Typeface face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ChaletNewYorkNineteenSixty.ttf");
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Activity act = getActivity();
         listen = (OnUserSelectedListener) act;
@@ -49,6 +56,8 @@ public class HomeFragment extends Fragment {
 
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);
+        banner = (TextView) rootView.findViewById(R.id.staticBanner);
+        banner.setTypeface(face);
         adapter = new UserArrayAdapter(getActivity(), userList);
         list.setAdapter(adapter);
 

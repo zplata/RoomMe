@@ -42,10 +42,5 @@ namespace RoomMe.Webservice.Controllers
 
             return Ok(model.ToAPIModel());
         }
-
-        public async Task<HttpResponseMessage> SaveTag([FromBody])
-        {
-
-        }
     }
 }
