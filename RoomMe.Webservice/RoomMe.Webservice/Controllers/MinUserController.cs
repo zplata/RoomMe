@@ -1,4 +1,5 @@
-﻿using RoomMe.Webservice.Models;
+﻿using RoomMe.Webservice.Algorithm;
+using RoomMe.Webservice.Models;
 using RoomMe.Webservice.Models.API;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Http;
 
 namespace RoomMe.Webservice.Controllers
 {
+    [RoutePrefix("api/minuser")]
     public class MinUserController : ApiController
     {
 
@@ -30,6 +32,63 @@ namespace RoomMe.Webservice.Controllers
             return minModels;
         }
 
+        [Route("compatible")]
+        public async Task<HttpResponseMessage> Compatible([FromUri] int userID)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            User user = await context.Users.FindAsync(userID);
+
+            if(user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden, false);
+            }
+
+            Status correspondingStatus = Status.NeedsRoommateOnly;
+
+            switch(user.Status)
+            {
+                case Status.NeedsRoommateOnly:
+                    correspondingStatus = Status.NeedsRoommateOnly;
+                    break;
+                case Status.HasVacancy:
+                    correspondingStatus = Status.NeedsHousingAndRoommate;
+                    break;
+                case Status.NeedsHousingAndRoommate:
+                    correspondingStatus = Status.HasVacancy;
+                    break;
+                case Status.Inactive:
+                    correspondingStatus = Status.Inactive;
+                    break;
+            }
+
+            List<User> logicalUsers = new List<User>();
+
+            if(correspondingStatus != Status.Inactive)
+            {
+                logicalUsers = context.Users.Where(x => x.Status == correspondingStatus).ToList();
+            }
+            else
+            {
+                logicalUsers = context.Users.Where(x => x.Status != Status.Inactive).ToList();
+            }
+
+            logicalUsers.Remove(user);
+
+            MatchService ms = new MatchService();
+            List<int> matchScores = new List<int>();
+            List<APIUser> logicalMinUsers = new List<APIUser>();
+
+            foreach(var u in logicalUsers)
+            {
+                logicalMinUsers.Add(u.ToAPIModel());
+                matchScores.Add(ms.GenerateMatchScoreByStatus(user, u));
+            }
+
+            var response = new List<object> { logicalMinUsers, matchScores};
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
         // GET api/minUser/5
         public async Task<IHttpActionResult> Get(int id)
         {

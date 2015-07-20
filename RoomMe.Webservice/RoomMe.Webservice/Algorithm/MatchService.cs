@@ -11,102 +11,167 @@ namespace RoomMe.Webservice.Algorithm
     {
         RoomMeWebserviceContext db = new RoomMeWebserviceContext();
 
-        // User A wants to live with user B
-        public int GenerateMatchScoreOfPreferences(int userAID, int userBID)
+        public int GenerateMatchScoreByStatus(User userA, User userB)
         {
-            User a = db.Users.Find(userAID);
-            User b = db.Users.Find(userBID);
+            var statusA = userA.Status;
+            var statusB = userB.Status;
 
-            if ((a == null) || (b == null) || (a.Status == Status.Inactive) || (b.Status == Status.Inactive))
+            if (userA.Preferences == null)
+            {
+                userA.Preferences = new Preferences();
+            }
+
+            if (userB.Preferences == null)
+            {
+                userB.Preferences = new Preferences();
+            }
+
+            if((statusA == Status.HasVacancy) && (statusB == Status.NeedsHousingAndRoommate))
+            {
+                return GenerateMatchScoreOfFillingVacancy(userA, userB);
+            }
+            else if ( (statusA == Status.NeedsHousingAndRoommate) && (statusB == Status.HasVacancy) )
+            {
+                return GenerateMatchScoreOfMovingIn(userA, userB);
+            }
+            else if ( (statusA == Status.NeedsRoommateOnly) && (statusB == Status.NeedsRoommateOnly) )
+            {
+                return GenerateMatchScoreOfPreferences(userA, userB);
+            }
+
+            return 0;
+        }
+
+        // User A wants to live with user B
+        public int GenerateMatchScoreOfPreferences(User userA, User userB)
+        {
+
+            if ((userA == null) || (userB == null) || (userA.Status == Status.Inactive) || (userB.Status == Status.Inactive))
             {
                 return 0;
             }
 
+            if (userA.Preferences == null)
+            {
+                userA.Preferences = new Preferences();
+            }
+
+            if (userB.Preferences == null)
+            {
+                userB.Preferences = new Preferences();
+            }
+
             var score = 0;
 
-            score += GenerateMatchScoreForAge(a.Preferences.Age.Value, b.Age);
+            score += GenerateMatchScoreForAge(userA.Preferences.Age, userB.Age);
 
-            score += GenerateMatchScoreForGender(a.Preferences.Gender.Value, b.Gender);
+            score += GenerateMatchScoreForGender(userA.Preferences.Gender, userB.Gender);
 
-            score += GenerateMatchScoreForPriceRange(a.Preferences.LowerPriceLimit.Value, a.Preferences.UpperPriceLimit.Value, b.Preferences.LowerPriceLimit.Value, b.Preferences.UpperPriceLimit.Value);
+            score += GenerateMatchScoreForPriceRange(userA.Preferences.LowerPriceLimit, userA.Preferences.UpperPriceLimit, userB.Preferences.LowerPriceLimit, userB.Preferences.UpperPriceLimit);
 
-            var matchingHousing = GetMatchingHousings(a.Preferences.Housings, new List<Housing> { b.Housing });
+            var matchingHousing = GetMatchingHousings(userA.Preferences.Housings, new List<Housing> { userB.Housing });
 
             if (matchingHousing.Count > 0)
             {
                 score += 1000;
             }
 
-            var matchingTags = GetMatchingTags(a.Tags, b.Preferences.Tags);
+            if((userA.Preferences != null) && (userB.Preferences != null))
+            {
+                var matchingTags = GetMatchingTags(userA.Preferences.Tags, userB.Preferences.Tags);
 
-            score += 100 * matchingTags.Count;
+                score += 100 * matchingTags.Count;
 
-            var matchingLocation = GenerateHousingLocationScore(b.Housing, a.Preferences.Locations);
+                var matchingLocationScore = GenerateHousingLocationScore(userB.Housing, userA.Preferences.Locations);
+
+                score += matchingLocationScore;
+            }
 
             return score;
 
         }
 
         // User A is trying to move in with user B
-        public int GenerateMatchScoreOfMovingIn(int userAID, int userBID)
+        public int GenerateMatchScoreOfMovingIn(User userA, User userB)
         {
-            User a = db.Users.Find(userAID);
-            User b = db.Users.Find(userBID);
 
-            if ((a == null) || (b == null) || (a.Status == Status.Inactive) || (b.Status == Status.Inactive))
+            if ((userA == null) || (userB == null) || (userA.Status == Status.Inactive) || (userB.Status == Status.Inactive))
             {
                 return 0;
             }
 
+            if (userA.Preferences == null)
+            {
+                userA.Preferences = new Preferences();
+            }
+
+            if (userB.Preferences == null)
+            {
+                userB.Preferences = new Preferences();
+            }
+
             var score = 0;
 
-            var matchingTags = GetMatchingTags(a.Tags, b.Preferences.Tags);
+            var matchingTags = GetMatchingTags(userA.Tags, userB.Preferences.Tags);
 
             score += 100 * matchingTags.Count;
 
-            score += GenerateMatchScoreForAge(a.Preferences.Age.Value, b.Age);
+            score += GenerateMatchScoreForAge(userA.Preferences.Age, userB.Age);
 
-            score += GenerateMatchScoreForGender(a.Preferences.Gender.Value, b.Gender);
+            score += GenerateMatchScoreForGender(userA.Preferences.Gender, userB.Gender);
 
-            score += GenerateMatchScoreForPrice(a.Preferences.LowerPriceLimit.Value, a.Preferences.UpperPriceLimit.Value, b.HousingPrice.Value);
+            score += GenerateMatchScoreForPrice(userA.Preferences.LowerPriceLimit, userA.Preferences.UpperPriceLimit, userB.HousingPrice);
 
-            var matchingHousing = GetMatchingHousings(a.Preferences.Housings, new List<Housing>{b.Housing});
+            var matchingHousing = GetMatchingHousings(userA.Preferences.Housings, new List<Housing>{userB.Housing});
 
             if(matchingHousing.Count > 0)
             {
                 score += 1000;
             }
 
-            var matchingLocation = GenerateHousingLocationScore(b.Housing, a.Preferences.Locations);
+            var matchingLocation = GenerateHousingLocationScore(userB.Housing, userA.Preferences.Locations);
 
             return score;
         }
 
         // User A is trying to fill a vacancy with user B
-        public int GenerateMatchScoreOfFillingVacancy(int userAID, int userBID)
+        public int GenerateMatchScoreOfFillingVacancy(User userA, User userB)
         {
-            User a = db.Users.Find(userAID);
-            User b = db.Users.Find(userBID);
 
-            if ((a == null) || (b == null) || (a.Status == Status.Inactive) || (b.Status == Status.Inactive))
+            if ((userA == null) || (userB == null) || (userA.Status == Status.Inactive) || (userB.Status == Status.Inactive))
             {
                 return 0;
             }
 
+            if(userA.Preferences == null)
+            {
+                userA.Preferences = new Preferences();
+            }
+
+            if(userB.Preferences == null)
+            {
+                userB.Preferences = new Preferences();
+            }
+
             var score = 0;
 
-            var matchingTags = GetMatchingTags(a.Tags, b.Preferences.Tags);
+            if((userA.Tags != null) && (userB.Preferences.Tags != null))
+            {
+                var matchingTags = GetMatchingTags(userA.Tags, userB.Preferences.Tags);
 
-            score += 100 * matchingTags.Count;
+                score += 100 * matchingTags.Count;
 
-            score += GenerateMatchScoreForAge(a.Preferences.Age.Value, b.Age);
 
-            score += GenerateMatchScoreForGender(a.Preferences.Gender.Value, b.Gender);
+            }
+
+            score += GenerateMatchScoreForAge(userA.Preferences.Age, userB.Age);
+
+            score += GenerateMatchScoreForGender(userA.Preferences.Gender, userB.Gender);
 
             return score;
         }
 
-        public int GenerateMatchScoreForGender(Gender desired, Gender real)
+        public int GenerateMatchScoreForGender(Gender? desired, Gender real)
         {
             if((desired == null) || (real == null))
             {
@@ -122,7 +187,7 @@ namespace RoomMe.Webservice.Algorithm
 
         }
 
-        public int GenerateMatchScoreForAge(int desired, int real)
+        public int GenerateMatchScoreForAge(int? desired, int real)
         {
 
             if((desired == null) || (real == null))
@@ -132,10 +197,10 @@ namespace RoomMe.Webservice.Algorithm
 
             var score = 1000;
 
-            return score - 200 * (Math.Abs(desired - real));
+            return score - 200 * (Math.Abs(desired.Value - real));
         }
 
-        public int GenerateMatchScoreForPrice(double lowerEnd, double upperEnd, double givenPrice)
+        public int GenerateMatchScoreForPrice(double? lowerEnd, double? upperEnd, double? givenPrice)
         {
 
             if((lowerEnd == null) || (upperEnd == null) || (givenPrice == null))
@@ -144,27 +209,33 @@ namespace RoomMe.Webservice.Algorithm
             }
 
             double score = 1000;
-            double range = upperEnd - lowerEnd;
+            double range = upperEnd.Value - lowerEnd.Value;
 
             if(score > upperEnd)
             {
                 var dif = score - upperEnd;
                 var mult = dif / range;
-                score -= 200 * dif / range;
+                score -= 200 * dif.Value / range;
             }
             else if(score < lowerEnd)
             {
                 var dif = score - lowerEnd;
                 var mult = dif / range;
-                score -= 200 * dif / range;
+                score -= 200 * dif.Value / range;
             }
 
             return (int) score; 
         }
 
         // would user B accept user A's price range?
-        public int GenerateMatchScoreForPriceRange(double lowerA, double upperA, double lowerB, double upperB)
+        public int GenerateMatchScoreForPriceRange(double? lowerA, double? upperA, double? lowerB, double? upperB)
         {
+
+            if((lowerA == null) || (upperA == null) || (lowerB == null) || (upperB == null))
+            {
+                return 0;
+            }
+
             var rangeA = upperA - lowerA;
             //check range coverage
             double coverage = 0;
@@ -179,21 +250,21 @@ namespace RoomMe.Webservice.Algorithm
             }
             else
             {
-                double upperLimitWithinA = upperB;
-                double lowerLimitWithinA = lowerB;
+                double upperLimitWithinA = upperB.Value;
+                double lowerLimitWithinA = lowerB.Value;
 
                 if(upperB > upperA)
                 {
-                    upperLimitWithinA = upperA;
+                    upperLimitWithinA = upperA.Value;
                 }
                 if(lowerB < lowerA)
                 {
-                    lowerLimitWithinA = lowerA;
+                    lowerLimitWithinA = lowerA.Value;
                 }
 
                 var rangeWithinA = upperLimitWithinA - lowerLimitWithinA;
 
-                coverage = rangeWithinA / rangeA;
+                coverage = rangeWithinA / rangeA.Value;
             }
 
             var coverageScore = 1000.00 * coverage;
@@ -212,14 +283,14 @@ namespace RoomMe.Webservice.Algorithm
 
                 if(lowerB > upperA) //A's range is below B
                 {
-                    diff = lowerB - upperA;
+                    diff = lowerB.Value - upperA.Value;
                 }
                 else if(lowerA > upperB) // A's range is above B
                 {
-                    diff = lowerA - upperB;
+                    diff = lowerA.Value - upperB.Value;
                 }
 
-                mult = diff / rangeA;
+                mult = diff / rangeA.Value;
 
                 // score based on how much above or below B's range is compared to A's range as a function of the size of A's range
                 var score = rangeProximityScore * (1.0 - mult);
@@ -231,6 +302,7 @@ namespace RoomMe.Webservice.Algorithm
 
         public List<Tag> GetMatchingTags(List<Tag> a, List<Tag> b)
         {
+            
             if ((a == null) || (b == null))
             {
                 return new List<Tag>();
