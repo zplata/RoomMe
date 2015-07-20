@@ -5,7 +5,7 @@ package com.example.trocket.roomme;
  */
 public class HoldMyUserObject {
 
-    public User my_user_object;
+    public static User my_user_object;
 
     public HoldMyUserObject(User obj) {
         my_user_object = obj;

@@ -70,9 +70,9 @@ public class InitialProfileEdit extends ActionBarActivity {
                     obj.put("phoneNumber", phoneNum.getText());
                     obj.put("status", statusOfficial);
                     obj.put("age", age.getText());
-                    postInitialUser = new postUsersAsync();
+                    postInitialUser = new postUsersAsync(InitialProfileEdit.this);
                     // Note: THIS IS WHERE YOU POST JSON OBJECT TO PARSER
-                    //postInitialUser.execute(obj);
+                    postInitialUser.execute(obj);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -118,11 +118,7 @@ public class InitialProfileEdit extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * This is where we store the user_id of the user of the app
-     * @param pass
-     */
-    public void onUserIdReturned(User pass) {
+    /*public void onUserIdReturned(User pass) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("user_id", pass.getUserID());
@@ -152,9 +148,15 @@ public class InitialProfileEdit extends ActionBarActivity {
         }
         editor.putInt("user_status", st);
         editor.putString("user_housing_price", pass.getHousingPrice() + "");
-        editor.putString("user_bio", pass.getBio());
-        editor.commit();
+        editor.putString("user_bio", pass.getBio());*/
 
+    public void onUserIdReturned(User user) {
+        /*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+         int user_id = user.getUserID();
+        editor.putInt("user_id", user_id);
+        editor.commit();*/
+        HoldMyUserObject.my_user_object = user;
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
