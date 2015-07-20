@@ -75,3 +75,18 @@ Our application uses the following models:
 All of our api exists on `roomme.azurewebsites.net/api`. Check out the url for (incomplete) documentation on all the available enpoints. 
 
 To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints.
+
+Moral of the story is, you can build your own app around our service!
+
+## Algorithm
+
+Our super roommate algorithm takes into consideration several factors before spitting out a compatibility score:
+* Status
+  * scores are computed slightly differently depending on if you're moving in with another roommate, if you're filling a vacancy with another roommate, or just looking at other roommates who don't have residencies yet.
+* your age, their age, your preferred age
+* your gender, their gender, your preferred gender
+* your preferred price range vs their preferred price range, vs their price
+* location preferrences and location proximity
+* housing preferrences and location proximity
+  
+
