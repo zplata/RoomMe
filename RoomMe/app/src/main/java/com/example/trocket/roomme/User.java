@@ -21,7 +21,7 @@ public class User implements Parcelable {
     private int status;
     private double housingPrice;
     private String bio;
-    private int matchScore;
+    public int matchScore;
     private List<Integer> favoritedUserIDS;
 
     /**
