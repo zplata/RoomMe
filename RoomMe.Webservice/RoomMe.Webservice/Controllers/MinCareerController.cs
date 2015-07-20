@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace RoomMe.Webservice.Controllers
 {
+    [RoutePrefix("api/mincareer")]
     public class MinCareerController : ApiController
     {
 
@@ -40,6 +41,40 @@ namespace RoomMe.Webservice.Controllers
             }
 
             return Ok(career.ToAPIModel());
+        }
+
+        [Route("byjobtitle")]
+        public async Task<HttpResponseMessage> GetByJobTitle([FromUri] string jobTitle)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Careers.Where(x => x.JobTitle == jobTitle).ToList();
+
+            var apiresults = new List<APICareer>();
+
+            foreach(var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
+
+        [Route("bycompany")]
+        public async Task<HttpResponseMessage> GetByCompany([FromUri] string company)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Careers.Where(x => x.Company == company).ToList();
+
+            var apiresults = new List<APICareer>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
         }
     }
 }

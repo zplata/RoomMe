@@ -100,5 +100,73 @@ namespace RoomMe.Webservice.Controllers
 
             return Ok(model.ToAPIModel());
         }
+
+        [Route("byname")]
+        public async Task<HttpResponseMessage> GetByName([FromUri] string name)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Users.Where(x => x.Name == name).ToList();
+
+            var apiresults = new List<APIUser>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
+
+        [Route("byage")]
+        public async Task<HttpResponseMessage> GetByAge([FromUri] int age)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Users.Where(x => x.Age == age).ToList();
+
+            var apiresults = new List<APIUser>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
+
+        [Route("byemail")]
+        public async Task<HttpResponseMessage> GetByEmail([FromUri] string email)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Users.Where(x => x.Email == email).ToList();
+
+            var apiresults = new List<APIUser>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
+
+        [Route("byphone")]
+        public async Task<HttpResponseMessage> GetByPhone([FromUri] string phone)
+        {
+            var context = new RoomMeWebserviceContext();
+
+            var results = context.Users.Where(x => x.PhoneNumber == phone).ToList();
+
+            var apiresults = new List<APIUser>();
+
+            foreach (var car in results)
+            {
+                apiresults.Add(car.ToAPIModel());
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, apiresults);
+        }
     }
 }
