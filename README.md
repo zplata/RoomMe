@@ -67,3 +67,9 @@ Our application uses the following models:
 
 * List of Users
   * Denotes the users who have this career in common.
+
+## API
+
+All of our api exists on `roomme.azurewebsites.net/api`. Check out the url for (incomplete) documentation on all the available enpoints. 
+
+To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints.
