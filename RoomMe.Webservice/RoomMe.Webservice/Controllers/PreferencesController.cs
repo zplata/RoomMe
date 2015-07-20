@@ -101,6 +101,102 @@ namespace RoomMe.Webservice.Controllers
             return Ok(preferences);
         }
 
+        public async Task<HttpResponseMessage> AssociateTag(int tagID, int preferencesID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var tag = context.Tags.Find(tagID);
+            var preferences = context.Preferences.Find(preferencesID);
+
+            if ((tag == null) || (preferences == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find preference or tag");
+            }
+            else
+            {
+                context.Preferences.Attach(preferences);
+                context.Tags.Attach(tag);
+
+                preferences.Tags.Add(tag);
+
+                context.Entry(preferences).State = EntityState.Modified;
+                context.Entry(tag).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+            }
+        }
+
+        public async Task<HttpResponseMessage> AssociateLocation(int locationID, int preferencesID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var location = context.Locations.Find(locationID);
+            var preferences = context.Preferences.Find(preferencesID);
+
+            if ((location == null) || (preferences == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find preference or tag");
+            }
+            else
+            {
+                context.Preferences.Attach(preferences);
+                context.Locations.Attach(location);
+
+                preferences.Locations.Add(location);
+
+                context.Entry(preferences).State = EntityState.Modified;
+                context.Entry(location).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+            }
+        }
+
+        public async Task<HttpResponseMessage> AssociateHousing(int housingID, int preferencesID)
+        {
+            var context = new RoomMeWebserviceContext();
+            var housing = context.Housings.Find(housingID);
+            var preferences = context.Preferences.Find(preferencesID);
+
+            if ((housing == null) || (preferences == null))
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Could not find preference or tag");
+            }
+            else
+            {
+                context.Preferences.Attach(preferences);
+                context.Housings.Attach(housing);
+
+                preferences.Housings.Add(housing);
+
+                context.Entry(preferences).State = EntityState.Modified;
+                context.Entry(housing).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save.");
+                }
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
