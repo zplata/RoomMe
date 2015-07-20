@@ -120,12 +120,39 @@ public class InitialProfileEdit extends ActionBarActivity {
 
     /**
      * This is where we store the user_id of the user of the app
-     * @param user_id
+     * @param pass
      */
-    public void onUserIdReturned(int user_id) {
+    public void onUserIdReturned(User pass) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("user_id", user_id);
+        editor.putInt("user_id", pass.getUserID());
+        editor.putString("user_name", pass.getName());
+        String s = pass.getGender();
+        int g = 0;
+        if(s.equals("F")) {
+            g = 1;
+        }
+        editor.putInt("user_gender", g);
+        editor.putInt("user_age", pass.getAge());
+        editor.putString("user_phone", pass.getPhoneNumber());
+        editor.putString("user_email", pass.getEmail());
+        String tempS = pass.getStatus();
+        int st = 0;
+        if(tempS.equals("Has vacancy")) {
+            st = 0;
+        }
+        else if (tempS.equals("Needs housing and roommate")) {
+            st = 1;
+        }
+        else if (tempS.equals("Only need roommate(s)")) {
+            st = 2;
+        }
+        else {
+            st = 3;
+        }
+        editor.putInt("user_status", st);
+        editor.putString("user_housing_price", pass.getHousingPrice() + "");
+        editor.putString("user_bio", pass.getBio());
         editor.commit();
 
         Intent i = new Intent(this, HomeActivity.class);
