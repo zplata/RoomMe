@@ -1,5 +1,7 @@
 # RoomMe
-Android application to facilitate roommate-finding within internal networks
+RoomMe is a mobile application that allows for users to seek out potential roommates in a mutual location. Users can view a feed of other users either looking for people to fill vacancy in their own property, or looking for people who they want to find housing with. Either way, a user can view a complete profile of other users on the feed and get contact information, as well as save potential roommates to a favorited list of users, the RoomMe List. One's own profile is editable and viewable accordingly. Users can also view a match score based on their compatibility to a specific user. A complex algorithm computes the score based on several factors of the users preferences. 
+
+To get started, a user must login with their Facebook credentials and fill out a short preferences form to be registered. Go forth, and find your RoomMe!
 
 Check out our issue board [here!](https://waffle.io/zplata/RoomMe)
 
