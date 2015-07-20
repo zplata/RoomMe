@@ -28,7 +28,7 @@ import java.util.List;
 public class LoginActivity extends Activity {
 
     private CallbackManager callbackManager;
-    private JSONObject jsonStuff;
+    postUsersAsync post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,8 @@ public class LoginActivity extends Activity {
                             public void onCompleted(
                                     JSONObject object,
                                     GraphResponse response) {
-                                setObject(object);
+                                post = new postUsersAsync();
+                                post.execute(object);
                                 // Pass JSON object on to database
                             }
                         });
@@ -134,10 +135,4 @@ public class LoginActivity extends Activity {
         editor.commit();
     }
 
-    public void setObject(JSONObject json) {
-        jsonStuff = json;
-    }
-    public JSONObject getMyJsonObject() {
-        return jsonStuff;
-    }
 }
