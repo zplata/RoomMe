@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by zp035497 on 7/13/15.
@@ -20,6 +21,7 @@ public class User implements Parcelable {
     private int status;
     private double housingPrice;
     private String bio;
+    private int matchScore;
     private List<Integer> favoritedUserIDS;
 
     /**
@@ -39,6 +41,9 @@ public class User implements Parcelable {
         this.housingPrice = housingPrice;
         this.bio = bio;
         this.favoritedUserIDS = favoritedUserIDS;
+        Random r = new Random();
+        int randy = r.nextInt(100 - 0);
+        this.matchScore = randy;
     }
 
     public int getUserID() { return userID; }
@@ -75,7 +80,9 @@ public class User implements Parcelable {
     public void setEmail(String email) { this.email = email; }
 
     // Placeholder
-    public double getMatchScore() { return 6.9; }
+    public int getMatchScore() {
+        return matchScore;
+    }
 
     @Override
     public int describeContents() {
