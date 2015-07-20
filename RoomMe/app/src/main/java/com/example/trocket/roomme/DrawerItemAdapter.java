@@ -6,6 +6,7 @@ package com.example.trocket.roomme;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class DrawerItemAdapter extends ArrayAdapter<TestObject> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View listItem = convertView;
+        Typeface face = Typeface.createFromAsset(((Activity) mContext).getAssets(), "fonts/ChaletNewYorkNineteenSixty.ttf");
 
         LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
         listItem = inflater.inflate(layoutResourceId, parent, false);
@@ -38,6 +40,7 @@ public class DrawerItemAdapter extends ArrayAdapter<TestObject> {
         com.beardedhen.androidbootstrap.FontAwesomeText imageViewIcon = (com.beardedhen.androidbootstrap.FontAwesomeText)
                 listItem.findViewById(R.id.dli_icon);
         TextView textViewName = (TextView) listItem.findViewById(R.id.dli_action);
+        textViewName.setTypeface(face);
 
         TestObject folder = data[position];
 

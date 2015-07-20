@@ -1,6 +1,8 @@
 package com.example.trocket.roomme;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,8 @@ public class UserArrayAdapter extends ArrayAdapter<User> {
 
         user_name_view.setText(user.getName());
         match_score_view.setText(user.getMatchScore() + "");
+        match_score_view.setTextColor(Color.parseColor("#fe9201"));
+        match_score_view.setTypeface(null, Typeface.BOLD);
 
         return convertView;
     }

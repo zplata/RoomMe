@@ -14,8 +14,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.47"
+            android:layout_height="203dp"
             android:layout_gravity="center_horizontal"
             android:background="#0B61A4">
 
@@ -31,49 +30,133 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:paddingLeft="10dp"
-                android:textSize="30dp"
+                android:paddingLeft="10sp"
+                android:textSize="30sp"
+                android:text="TESTINGTESITg"
+                android:textColor="#FFFFFF"
                 android:id="@+id/fp_name"
                 android:layout_below="@+id/fp_user_picture"
                 android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="fill_parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:id="@+id/fp_age" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33">
-
-            <Button
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add to List"
-                android:id="@+id/fp_addToList"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FB msg"
-                android:id="@+id/fp_fbMSG"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/fp_bio"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5sp"
+                    android:textSize="18sp"
+                    android:textColor="#343434"
+                    android:paddingRight="5sp"
+                    android:paddingTop="5sp"/>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dip"
+                    android:background="#000" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Housing Info"
+                    android:id="@+id/staticHousingInfo"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingTop="5sp"
+                    />
+
+                <TextView
+                    android:id="@+id/fp_status"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:textColor="#343434"
+                    android:textStyle="italic"
+                    android:textSize="18sp"
+                    />
+
+                <TextView
+                    android:id="@+id/fp_housingPrice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:textColor="#343434"
+                    android:textSize="18sp"
+                    />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dip"
+                    android:background="#000000" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Info"
+                    android:id="@+id/staticContactInfo"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:textColor="#000"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingTop="5sp"
+                    />
+
+                <TextView
+                    android:id="@+id/fp_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:textColor="#343434"
+                    android:textSize="18sp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add to List"
+                        android:id="@+id/fp_addToList"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FB msg"
+                        android:id="@+id/fp_fbMSG"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
 
     </LinearLayout>
 
