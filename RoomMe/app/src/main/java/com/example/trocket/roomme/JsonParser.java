@@ -24,7 +24,7 @@ public class JsonParser {
             for (int i=0; i < jsonArray.length(); i++)
             {
                 JSONObject user = jsonArray.getJSONObject(i);
-                String tempName, tempAge, tempID, tempGender, tempPhone, tempEmail, tempStatus, tempHousingPrice, tempBio = null;
+                String tempName, tempAge, tempID, tempGender, tempPhone, tempEmail, tempStatus, tempHousingPrice, tempBio, tempMatch = null;
                 //JSONArray jsonFavorites = new JSONArray(user.optJSONArray("FavoritedUserID's"));
                 tempName = user.optString("Name").toString();
                 tempAge = user.optString("Age").toString();
@@ -33,6 +33,7 @@ public class JsonParser {
                 tempPhone = user.optString("PhoneNumber").toString();
                 tempEmail = user.optString("Email").toString();
                 tempStatus = user.optString("Status").toString();
+                tempMatch = user.optString("MatchScore").toString();
                 tempHousingPrice = "0";
                 if (user.optString("HousingPrice").toString() != "null")
                 {
@@ -49,6 +50,7 @@ public class JsonParser {
                     //User tempUser = new User(tempName, Integer.parseInt(tempAge));
                     User tempUser = new User(Integer.parseInt(tempID), tempName, Integer.parseInt(tempGender), Integer.parseInt(tempAge),
                             tempPhone, tempEmail, Integer.parseInt(tempStatus), Double.parseDouble(tempHousingPrice), tempBio, tempFavorites);
+                    tempUser.matchScore = Integer.parseInt(tempMatch);
                     list.add(tempUser);
                 }
             }
