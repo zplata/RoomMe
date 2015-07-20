@@ -3,8 +3,10 @@ package com.example.trocket.roomme;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -61,7 +63,9 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
         testObjs[2] = new TestObject(R.drawable.action_search, "Edit Profile");
         testObjs[3] = new TestObject(R.drawable.action_search, "RoomMe List");
 
-
+        SharedPreferences prefs = getSharedPreferences("user", 0);
+        int id = prefs.getInt("id", 0);
+        HoldMyUserObject.id = id;
         //Execute a JsonGetter. It will call a response method when it finishes
         //This is an example
         getUsers = new getUsersAsync(this);

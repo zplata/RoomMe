@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
@@ -45,9 +47,10 @@ public class HomeFragment extends Fragment {
         listen = (OnUserSelectedListener) act;
         //Execute a JsonGetter. It will call a response method when it finishes
         //This is an example
+
+
         getUsers = new getUsersAsync(this);
         getUsers.execute(2);
-
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);
         banner = (TextView) rootView.findViewById(R.id.staticBanner);

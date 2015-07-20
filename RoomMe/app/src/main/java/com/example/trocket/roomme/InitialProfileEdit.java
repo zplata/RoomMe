@@ -1,5 +1,6 @@
 package com.example.trocket.roomme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -157,6 +158,13 @@ public class InitialProfileEdit extends ActionBarActivity {
         editor.putInt("user_id", user_id);
         editor.commit();*/
         HoldMyUserObject.my_user_object = user;
+
+        int id = user.getUserID();
+        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("id", id );
+        editor.commit();
+
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }
