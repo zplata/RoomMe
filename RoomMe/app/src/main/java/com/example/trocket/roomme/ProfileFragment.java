@@ -80,6 +80,32 @@ public class ProfileFragment extends Fragment {
         status.setText(position.getStatus() + "");
         housingPrice.setText("$" + position.getHousingPrice() + "/month");
         email.setText(position.getEmail() + "");
+        String name = position.getName();
+        switch (name)
+        {
+            case "Abraham Lincoln" : pic.setImage(R.drawable.abe_lincoln);
+                break;
+            case "Barack Obama" : pic.setImage(R.drawable.barack_obama);
+                break;
+            case "Han Solo" : pic.setImage(R.drawable.han_solo_carbonite);
+                break;
+            case "Arnold Schwarzenegger" : pic.setImage(R.drawable.arnold_schwarzenegger);
+                break;
+            case "Beyonce Knowles" : pic.setImage(R.drawable.beyonce_knowles);
+                break;
+            case "The Batman" : pic.setImage(R.drawable.batman);
+                break;
+            case "Blackbeard" : pic.setImage(R.drawable.blackbeard);
+                break;
+            case "Mike Tyson" : pic.setImage(R.drawable.mike_tyson);
+                break;
+            case "Ariana Grande" : pic.setImage(R.drawable.ariana_grande);
+                break;
+            case "Ned Stark" : pic.setImage(R.drawable.ned_stark);
+                break;
+                default: pic.setImage(R.drawable.isu);
+                    break;
+        }
     }
 
 
