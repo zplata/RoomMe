@@ -26,6 +26,7 @@ import java.util.List;
 public class LoginActivity extends Activity {
 
     private CallbackManager callbackManager;
+    postUsersAsync post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,9 @@ public class LoginActivity extends Activity {
                             public void onCompleted(
                                     JSONObject object,
                                     GraphResponse response) {
-
-                                // Pass JSON object on to database
+                                Intent i = new Intent(LoginActivity.this, InitialProfileEdit.class);
+                                i.putExtra("JsonObject", object.toString());
+                                startActivity(i);
                             }
                         });
                 Bundle parameters = new Bundle();
@@ -119,4 +121,6 @@ public class LoginActivity extends Activity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
     }
+
+
 }
