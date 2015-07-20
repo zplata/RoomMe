@@ -87,7 +87,7 @@ public class ProfileFragment extends Fragment {
                 break;
             case "Barack Obama" : pic.setImage(R.drawable.barack_obama);
                 break;
-            case "Han Solo" : pic.setImage(R.drawable.han_solo_carbonite);
+            case "Han Solo" : pic.setImage(R.drawable.han_solo);
                 break;
             case "Arnold Schwarzenegger" : pic.setImage(R.drawable.arnold_schwarzenegger);
                 break;
