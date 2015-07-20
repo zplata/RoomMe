@@ -74,9 +74,9 @@ Our application uses the following models:
 
 All of our api exists on `roomme.azurewebsites.net/api`. Check out the url for (incomplete) documentation on all the available enpoints. 
 
-To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints.
+To return models from the DB, you can either hit `roomme.azurewebsites.net/api/{model}` OR `roomme.azurewebsites.net/api/min{model}`. The former returns a fully fleshed out object with all of its relational data included. As a general rule, try to use the `api/min{model}` endpoints instead, as they return stripped down versions of the models (no relational data). When you want to complete rehydrate the model from its DTO form, query for those properties again using the `api/min{model}/byuserid` endpoints. Finally, to associate objects with each other, checkout the `api/{model}/associate{object}` endpoints. 
 
-Moral of the story is, you can build your own app around our service!
+Moral of the story is, we've exposed just enough API endpoints so that you can build your own app around our service!
 
 ## Algorithm
 
