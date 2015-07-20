@@ -89,4 +89,4 @@ Our super roommate algorithm takes into consideration several factors before spi
 * location preferrences and location proximity
 * housing preferrences and location proximity
   
-
+The range of scores you can get starts at 0 but has no upper limit. As a rule of thumb, consider a score of 50 to be a match made in heaven and 0 to be absolutely incompatible.
