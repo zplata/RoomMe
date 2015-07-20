@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+
 import java.util.ArrayList;
 
 
@@ -48,6 +50,7 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.OnUs
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_home);
         getFragmentManager().beginTransaction().replace(R.id.ah_content_frame, new HomeFragment()).commit();
 
