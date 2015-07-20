@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
         //This is an example
         getUsers = new getUsersAsync(this);
         getUsers.execute(2);
-        postUser = new postUsersAsync();
 
 
         list = (ListView) rootView.findViewById(R.id.fh_users_list);
