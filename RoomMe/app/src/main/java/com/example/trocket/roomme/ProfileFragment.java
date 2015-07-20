@@ -78,7 +78,12 @@ public class ProfileFragment extends Fragment {
         name.setText(position.getName() + ", " + position.getAge() + " (" + position.getGender() + ")");
         bio.setText(position.getBio() + "");
         status.setText(position.getStatus() + "");
-        housingPrice.setText("$" + position.getHousingPrice() + "/month");
+        if(position.getStatus() == "Has vacancy") {
+            housingPrice.setText("$" + position.getHousingPrice() + "/month");
+        }
+        else{
+            housingPrice.setText("");
+        }
         email.setText(position.getEmail() + "");
         String name = position.getName();
         switch (name)
