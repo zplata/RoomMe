@@ -8,6 +8,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ public class JsonAccessor {
     {
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
-        HttpGet siteHttp = new HttpGet(url);
+        HttpPost siteHttp = new HttpPost(url);
         try
         {
             HttpResponse response = client.execute(siteHttp);
