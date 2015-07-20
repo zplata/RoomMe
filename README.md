@@ -87,7 +87,7 @@ GET at api/minuser/compatible to checkout out your compatibility with potential 
 
 Moral of the story is, we've exposed just enough API endpoints so that you can build your own app around our service!
 
-## Algorithm
+## Algorithm. 415 lines of Magic.
 
 Our super roommate algorithm takes into consideration several factors before spitting out a compatibility score:
 * Status
